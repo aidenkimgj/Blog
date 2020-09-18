@@ -9,6 +9,14 @@ import { Category } from './left';
 class main extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      category: '',
+    }
+  }
+
+  _changeCategory = (target) => {
+    this.setState({category: target});
+    sessionStorage.setItem('category', target)
   }
 
   render() {
@@ -16,7 +24,7 @@ class main extends Component {
       <div className='Mains'>
         
         <div id='Mains-left'>
-          <Route path='/' component={Category} exact />
+        <Route path='/' render={props => <Category _changeCategory={_changeCategory} />} exact/>
         </div>
 
         <div>
