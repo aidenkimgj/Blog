@@ -14,7 +14,7 @@ const {
 sequelize.query('SET NAMES utf8;');
 
 module.exports = {
- 
+  
   api: {
     searchInfo: (body, hash, callback) => {
       Admin.findAll({
@@ -35,7 +35,8 @@ module.exports = {
         title: body.title,
         contents: body.contents,
         date: now_date,
-        view_cnt: 0
+        view_cnt: 0,
+        cat_id: 0,
       })
       .then(data => {
         callback(true);
@@ -54,26 +55,51 @@ module.exports = {
       if(body.search) {
         search = `%${body.search}%`;
       }
-      Board.findAll({
-        where: {
-          [Op.or]: [{
-            title : {
-              [Op.like]: search}},{ 
-            contents: {
-              [Op.like]: search
-        }}]},
-        
-        limit: (body.page*body.limit), 
-        offset: (body.page-1)*body.limit, 
-        order: sequelize.literal('board_id DESC') 
-      })
-      .then(data => {
-        
-        callback(data);
-      })
-      .catch(err => {
-        throw err;
-      });
+      
+      if(body.category === '') {
+        Board.findAll({
+          where: {
+            [Op.or]: [{
+              title : {
+                [Op.like]: search}},{ 
+              contents: {
+                [Op.like]: search}}], 
+          },
+          
+          limit: (body.page*body.limit), 
+          offset: (body.page-1)*body.limit, 
+          order: sequelize.literal('board_id DESC') 
+        })
+        .then(data => {
+          
+          callback(data);
+        })
+        .catch(err => {
+          throw err;
+        });
+      } else {
+        Board.findAll({
+          where: {
+            [Op.or]: [{
+              title : {
+                [Op.like]: search}},{ 
+              contents: {
+                [Op.like]: search}}], 
+              cat_id: body.category
+            },
+          
+          limit: (body.page*body.limit), 
+          offset: (body.page-1)*body.limit, 
+          order: sequelize.literal('board_id DESC') 
+        })
+        .then(data => {
+          
+          callback(data);
+        })
+        .catch(err => {
+          throw err;
+        });
+      }
     },
 
     board_cnt: (body, callback) => {
@@ -90,7 +116,8 @@ module.exports = {
           },
           contents: {
             [Op.like]: search
-          }
+          },
+          cat_id: body.category
         }
       })
       .then(result => {

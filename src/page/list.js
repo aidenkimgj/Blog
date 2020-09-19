@@ -24,30 +24,32 @@ class list extends Component {
   }
   
   _getListData = async () => {
-    
-   
+        
     const {limit} = this.state;
-    
     const page = this._setPage();
-   
+    
+    let {category} = this.props;
+    if(sessionStorage.getItem('category')) {
+      category = sessionStorage.getItem('category');
+    }
+
     let search = queryString.parse(this.props.location.search);
     console.log(search)
     if(search) {
       search = search.search;
     }
     
-   
     const total_cnt = await axios('/get/board_cnt', {
       method: 'POST',
       header: new Headers(),
-      data: {search: search}
+      data: {search: search, category: category}
     }
     );
     
     const total_list = await axios('/get/board', {
       method: 'POST',
       headers: new Headers(),
-      data: {limit: limit, page: page, search: search}
+      data: {limit: limit, page: page, search: search, category: category}
     });
     
     let page_arr = [];

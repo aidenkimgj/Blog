@@ -19,7 +19,15 @@ class main extends Component {
     sessionStorage.setItem('category', target)
   }
 
+  _withProps = (Component, props) => {
+    return (matchProps) => {
+      return <Component {...props} {...matchProps} />
+    }
+  }
+
   render() {
+
+    const {_changeCategory} = this;
     return (
       <div className='Mains'>
         
@@ -29,7 +37,7 @@ class main extends Component {
 
         <div>
           
-          <Route path='/' component={List} exact /> 
+          <Route path='/' component={this._withProps(List, {category: this.state.category})} exact /> 
           <Route path='/write' component={Write} />
           
           <Route path='/view/:data' component={View} />

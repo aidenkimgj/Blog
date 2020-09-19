@@ -169,3 +169,14 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.Category ul li a {
+  list-style: none;
+  color: black;
+  text-decoration: none;
+}
+
+.Category ul li .pre_cat {
+  font-weight: bold;
+  color: tan;
+}
