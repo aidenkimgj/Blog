@@ -17,7 +17,7 @@ class list extends Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     
     this._getListData();
     this._setPage();
