@@ -100,10 +100,10 @@ class list extends Component {
 
           return(
             <div className='list_grid list_data' key={key}>
-                <div> <Link className='list_link' to={view_url}>  {el.title} </Link></div>
-                <div className='veiw'> {el.view_cnt} </div>
+                <div> <Link className='list_link' to={view_url}>{el.title}</Link></div>
+                <div className='veiw'>{el.view_cnt}</div>
                                         
-                <div className='acenter'> {el.date.slice(0, 10)} </div>
+                <div className='acenter'>{el.date.slice(0, 10)}</div>
               </div>
 
           );
@@ -115,7 +115,6 @@ class list extends Component {
           <div></div>
           <div>
             <ul>
-               
               {all_page ? all_page.map((el,key) => {
                 
                 return(

@@ -2,7 +2,6 @@ const sequelize = require('./models').sequelize;
 let moment = require('moment-timezone');
 
 const now_date = moment().tz("America/Calgary").format('YYYY-MM-DD HH:mm:ss');
-console.log(now_date);
 
 
 const {
@@ -85,6 +84,7 @@ module.exports = {
                 [Op.like]: search}},{ 
               contents: {
                 [Op.like]: search}}], 
+              
               cat_id: body.category
             },
           

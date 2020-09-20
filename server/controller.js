@@ -4,9 +4,6 @@ const salt = require(path.join(__dirname, 'config', 'db.json')).salt;
 
 const hashing = require(path.join(__dirname, 'config', 'hashing.js'));
 
-
-
-
 module.exports = {
   needs: () => upload,
   api: {
@@ -41,7 +38,6 @@ module.exports = {
     }
   },
 
- 
   get: {
     board: (req, res) => {
       const body = req.body;
@@ -90,7 +86,7 @@ module.exports = {
       const exist_cookie = req.cookies[cookie_name];
       console.log(exist_cookie)
 
-     
+    
       if(!exist_cookie) {
         res.cookie(cookie_name, true, {
           expires: expires
@@ -101,10 +97,7 @@ module.exports = {
             res.send(true);
           }
         });
-      }
-    
-
-    
+      }    
     }
   }
 } 
