@@ -35,6 +35,22 @@ module.exports = {
           res.send(true);
         }
       });
+    },
+
+    category: (req, res) => {
+      const body = req.body;
+
+      model.add.category(body, result => {
+        let obj = {};
+        if(result) {
+          obj['suc'] = true;
+          obj['msg'] = 'Category has been created.'; 
+        } else {
+          obj['suc'] = false;
+          obj['msg'] = 'This category already exists.';
+        }
+        res.send(obj);
+      });
     }
   },
 

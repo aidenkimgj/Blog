@@ -43,7 +43,29 @@ module.exports = {
       .catch(err => {
         throw err;
       });
-    } 
+    },
+    
+    category: (body, callback) => {
+      Category.count({
+        where: {name: body.name}
+      })
+      .then(cnt => {
+        if(cnt > 0) {
+          callback(false);
+        } else {
+          Category.create({
+            name: body.name
+          })
+          .then(() => callback(true))
+          .catch(err => {
+            throw(err);
+          })
+        }
+      })
+      .catch(err => {
+        throw err;
+      });
+    }
   },
   
   get: {
