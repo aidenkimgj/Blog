@@ -12,15 +12,8 @@ class header extends Component {
       visible: false,
       id: "",
       password: "",
-      login: false,
     }
   }
-
-  componentDidMount() {
-    if(sessionStorage.login) {
-      this.setState({login : true});
-    }
-  } 
 
   _openModal = function() {
     this.setState({
@@ -66,10 +59,8 @@ class header extends Component {
       console.log(res.data.msg);
       
       if(res.data.suc) {
-        sessionStorage.setItem('login', true); 
-        this.setState({login: true});
+        this.props._login();
         this._closeModal();
-
         return alert('You have been logged in.');
       } else {
         return alert('You may have entered an incorrect ID and/or Password');
@@ -79,17 +70,17 @@ class header extends Component {
 
   _logout = () => {
     if(window.confirm('Would like to logout?')) {
-      sessionStorage.removeItem('login');
-      this.setState({login: false});
+      this.props._logout();
     }
   }
 
   render() {
+    const {login} = this.props;
 
     return (
         <div className='header_grid'>
             <div className='acenter'> 
-              {this.state.login ? <h5><Link to ='/write'>Post</Link></h5> : null}
+              {login ? <h5><Link to ='/write'>Post</Link></h5> : null}
             </div>
             
             <div className='acenter'>
@@ -101,7 +92,7 @@ class header extends Component {
             </div>
 
             <div className='acenter'> 
-                {this.state.login ? <h5 className='btn_cursor' onClick={() => this._logout()}> Administrator Logout</h5> : <h5 className='btn_cursor' onClick={() => this._openModal()}> Administrator Login </h5>}
+                {login ? <h5 className='btn_cursor' onClick={() => this.props._logout()}> Administrator Logout</h5> : <h5 className='btn_cursor' onClick={() => this._openModal()}> Administrator Login </h5>}
                 
                   <Modal  visible={this.state.visible} 
                           width="400" 
