@@ -180,3 +180,26 @@
   font-weight: bold;
   color: tan;
 }
+
+.Edit {
+  position: absolute;
+  margin: 10px 0px 0px 15px;
+  padding: 1px 7px 1px 7px;
+  border-radius: 4px;
+  color: #ababab;
+  background-color: #fff;
+  border-color: #ababab;
+  cursor: pointer;
+}
+
+.remove_icon {
+  position: absolute;
+  width: 15px;
+  margin-top: 14px;
+  cursor:pointer;
+}
+
+.edit_input {
+  width: 70%;
+  margin-left: 25px;
+}
