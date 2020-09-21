@@ -160,7 +160,7 @@ module.exports = {
       });
     },
 
-    category : (callback) => {
+    category: (callback) => {
       Category.findAll()
       .then(result => {
         callback(result);
@@ -172,7 +172,7 @@ module.exports = {
   },
 
   update: {
-    view_cnt : (body, callback) => {
+    view_cnt: (body, callback) => {
       
       Board.update({view_cnt : sequelize.literal('view_cnt + 1')}, {
         where: {board_id: body.id}
@@ -183,6 +183,16 @@ module.exports = {
       .catch(err => {
         throw err;
       });
+    }
+  },
+
+  delete: {
+    category:(body, callback) => {
+      Category.destroy({
+        where: {id: body.id}
+      })
+      .then( () => {callback(true)})
+      .catch(err => {throw err;});
     }
   }
 }
