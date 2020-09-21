@@ -191,8 +191,13 @@ module.exports = {
       Category.destroy({
         where: {id: body.id}
       })
-      .then( () => {callback(true)})
-      .catch(err => {throw err;});
+      .then( () => {
+        Board.update({cat_id: 0}, {
+          where: {cat_id: body.id}
+        })
+        .then(() => {callback(true)})
+        .catch(err => {throw err;});
+      })
     }
-  }
+  },
 }
