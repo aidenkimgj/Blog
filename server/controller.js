@@ -115,5 +115,17 @@ module.exports = {
         });
       }    
     }
+  },
+
+  delete: {
+    category: (req, res) => {
+      const body = req.body;
+
+      model.delete.category(body, result => {
+        if(result) {
+          res.send(result);
+        }
+      });
+    }
   }
 } 
