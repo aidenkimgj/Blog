@@ -10,5 +10,6 @@ router.post('/get/board_data', controller.get.board_data);
 router.post('/update/view_cnt', controller.update.view_cnt);
 router.get('/get/category', controller.get.category);
 router.post('/add/category', controller.add.category);
+router.post('/delete/category', controller.delete.category);
 
 module.exports = router; 
