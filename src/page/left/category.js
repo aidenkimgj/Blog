@@ -25,20 +25,22 @@ class category extends Component {
 
   _addCategory = async () => {
     let category_name = window.prompt('Please enter a name for the category you want to add.');
+    if(category_name) {
     category_name = category_name.trim();
 
-    if(category_name !== '' && category_name.length > 0) {
-      const add = await axios('/add/category', {
-        method: 'POST',
-        data: {name: category_name},
-        headers: new Headers()
-      })
+      if(category_name !== '' && category_name.length > 0) {
+        const add = await axios('/add/category', {
+          method: 'POST',
+          data: {name: category_name},
+          headers: new Headers()
+        })
 
-      alert(add.data.msg);
-      this._getCategoryData();
-      
-    } else {
-      return alert('You must enter at least 1 letter.')
+        alert(add.data.msg);
+        this._getCategoryData();
+        
+      } else {
+        return alert('You must enter at least 1 letter.')
+      }
     }
   }
 
