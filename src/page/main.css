@@ -203,3 +203,11 @@
   width: 70%;
   margin-left: 25px;
 }
+
+.modify_icon {
+  position: absolute;
+  width: 17px;
+  margin-top: 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
