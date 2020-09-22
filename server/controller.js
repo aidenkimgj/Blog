@@ -127,5 +127,24 @@ module.exports = {
         }
       });
     }
+  },
+
+  modify: {
+    category: (req, res) => {
+      const body = req.body;
+
+      model.modify.category(body, result => {
+        let obj = {};
+
+        if(result) {
+          obj['suc'] = true;
+          obj['msg'] = 'The category name has been replaced.';
+        } else {
+          obj['suc'] = false;
+          obj['msg'] = 'The category already exsists';
+        }
+        res.send(obj);
+      });
+    }
   }
 } 
