@@ -191,7 +191,7 @@ module.exports = {
       Category.destroy({
         where: {id: body.id}
       })
-      .then( () => {
+      .then(() => {
         Board.update({cat_id: 0}, {
           where: {cat_id: body.id}
         })
@@ -200,4 +200,27 @@ module.exports = {
       })
     }
   },
+
+  modify: {
+    category: (body, callback) => {
+      Category.count({
+        where: {name: body.name}
+      })
+      .then(cnt => {
+        if(cnt > 0) {
+          callback(false);
+        } else {
+          Category.update({name: body.name}, {
+            where: {id: body.id}
+          })
+          .then(() => {
+            callback(true);
+          })
+          .catch(err => {
+            throw err;
+          });
+        }
+      }) 
+    }
+  }
 }
