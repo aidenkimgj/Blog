@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import '../main.css';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class category extends Component {
   constructor(props) {
