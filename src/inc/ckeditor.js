@@ -13,7 +13,7 @@ class ckeditor extends Component {
       <div className='CKEditor'>
         <CKEditor 
           editor={ClassicEditor} 
-          date="<p></p>"
+          data="<p></p>"
           onInit={editor => {
             console.log('Editor is ready to use', editor);
           }}
