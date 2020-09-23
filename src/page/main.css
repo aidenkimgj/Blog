@@ -16,7 +16,7 @@
   padding-left: 30px;
 }
 
-.Write div {
+.Write #Title {
   margin-top: 20px;
   margin-left: 50px;
 }
@@ -210,4 +210,10 @@
   margin-top: 12px;
   margin-left: 5px;
   cursor: pointer;
+}
+
+.CKEditor {
+  margin-top : 20px;
+  margin-left: 50px;
+  width: 86.3%;
 }

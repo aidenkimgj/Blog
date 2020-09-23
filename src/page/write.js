@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { CKEditor } from '../inc/index.js';
+import './main.css'
 
 class write extends Component {
   constructor(props) {
@@ -8,12 +10,13 @@ class write extends Component {
   render() {
     return(
       <div className='Write'>
-        <div>
-          <input type='text' i ='title_txt' name='title' placeholder='Title'/>
+        <div id='Title'>
+          <input type='text' id='title_txt' name='title' placeholder='Title'/>
         </div>
 
         <div>
-          <textarea id='content_txt' name='contents' placeholder='Please write here'></textarea>
+          {/* <textarea id='content_txt' name='contents' placeholder='Please write here'></textarea> */}
+          <CKEditor /> 
         </div>
       </div>
     );
