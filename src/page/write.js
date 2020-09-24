@@ -8,6 +8,8 @@ class write extends Component {
   }
 
   render() {
+    const {_getContents, contents} = this.props;
+
     return(
       <div className='Write'>
         <div id='Title'>
@@ -15,8 +17,7 @@ class write extends Component {
         </div>
 
         <div>
-          {/* <textarea id='content_txt' name='contents' placeholder='Please write here'></textarea> */}
-          <CKEditor /> 
+          <CKEditor _getContents = {_getContents} contents={contents} /> 
         </div>
       </div>
     );

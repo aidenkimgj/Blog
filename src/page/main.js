@@ -11,6 +11,7 @@ class main extends Component {
     super(props)
     this.state = {
       category: '',
+      contents: "",
     }
   }
 
@@ -25,9 +26,19 @@ class main extends Component {
     }
   }
 
+  _getContents = val => {
+    const _contents = val.trim();
+
+    this.setState({contents: _contents});
+  }
+
   render() {
     const {login} = this.props;
-    const {_changeCategory} = this;
+    const {_changeCategory, _getContents} = this;
+    const {contents} = this.state;
+
+    
+
     return (
       <div className='Mains'>
         
@@ -38,13 +49,13 @@ class main extends Component {
         <div>
           
           <Route path='/' component={this._withProps(List, {category: this.state.category})} exact /> 
-          <Route path='/write' component={Write} />
+          <Route path='/write' component={this._withProps(Write, {_getContents: _getContents, contents: contents})} />
           
           <Route path='/view/:data' component={View} />
         </div>
 
         <div id='Mains-right'>  
-          <Route path='/write' component={Right_Write} />
+          <Route path='/write' component={this._withProps(Right_Write, {contents: contents})} />
         </div>
         
       </div>

@@ -9,20 +9,16 @@ class ckeditor extends Component {
   }
 
   render() {
+    const {_getContents, contents} = this.props; 
+
     return(
       <div className='CKEditor'>
         <CKEditor 
           editor={ClassicEditor} 
-          data="<p></p>"
-          onInit={editor => {
-            console.log('Editor is ready to use', editor);
-          }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            console.log({event, editor, data});
-          }}
+          data={contents}
           onBlur={(event, editor) => {
-            console.log('Blur.', editor);
+            const data = editor.getData();
+            _getContents(data);
           }}
           onFocus={(event, editor) => {
             console.log('Focus', editor);

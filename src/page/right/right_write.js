@@ -14,15 +14,15 @@ class right_write extends Component {
 
   _submitBoard = async () => {
     const _title = document.getElementsByName('title')[0].value.trim();
-    const _contents = document.getElementsByName('contents')[0].value.trim();
+    const contents = this.props.contents;
 
     if(_title === "") {
       return alert('Please enter a title.')
-    } else if (_contents === "") {
+    } else if (contents === "") {
       return alert('Please enter the content. ')
     }
 
-    const data = {title: _title, contents: _contents};
+    const data = {title: _title, contents: contents};
     const res = await axios('/add/board', {
       method: 'POST',
       data: data,
@@ -36,6 +36,7 @@ class right_write extends Component {
   }
 
   render() {
+    
     return(
       <div>
         <div id='post_submit'>
