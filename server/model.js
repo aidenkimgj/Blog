@@ -87,7 +87,7 @@ module.exports = {
                 [Op.like]: search}}], 
           },
           
-          limit: (body.page*body.limit), 
+          limit: body.limit, 
           offset: (body.page-1)*body.limit, 
           order: sequelize.literal('board_id DESC') 
         })
@@ -110,7 +110,7 @@ module.exports = {
               cat_id: body.category
             },
           
-          limit: (body.page*body.limit), 
+          limit: body.limit, 
           offset: (body.page-1)*body.limit, 
           order: sequelize.literal('board_id DESC') 
         })
@@ -130,21 +130,37 @@ module.exports = {
       if(body.search) {
         search = `%${body.search}%`;
       }
-
-      Board.count({ 
-        where: {
-          title: {
-            [Op.like]: search
-          },
-          contents: {
-            [Op.like]: search
-          },
-          cat_id: body.category
-        }
-      })
-      .then(result => {
-        callback(result);
-      });
+      if(body.category === '') {
+        Board.count({ 
+          where: {
+            title: {
+              [Op.like]: search
+            },
+            contents: {
+              [Op.like]: search
+            },
+            
+          }
+        })
+        .then(result => {
+          callback(result);
+        });
+      } else {
+        Board.count({ 
+          where: {
+            title: {
+              [Op.like]: search
+            },
+            contents: {
+              [Op.like]: search
+            },
+            cat_id: body.category            
+          }
+        })
+        .then(result => {
+          callback(result);
+        });
+      }
     },
 
     board_data: (body, callback) => {

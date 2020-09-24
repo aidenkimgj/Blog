@@ -20,7 +20,7 @@ class list extends Component {
   componentWillMount() {
     
     this._getListData();
-    this._setPage();
+    // this._setPage();
   }
   
   _getListData = async () => {
@@ -53,7 +53,7 @@ class list extends Component {
     });
     
     let page_arr = [];
-
+    console.log(total_cnt.data.cnt)
     for(let i = 1; i <= Math.ceil(total_cnt.data.cnt / limit); i++) {
       page_arr.push(i);
     }
