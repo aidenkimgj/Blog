@@ -92,7 +92,8 @@ class header extends Component {
             </div>
 
             <div className='acenter'> 
-                {login ? <h5 className='btn_cursor' onClick={() => this.props._logout()}> Administrator Logout</h5> : <h5 className='btn_cursor' onClick={() => this._openModal()}> Administrator Login </h5>}
+              <ul className='btn_list'>
+                {login ? <li className='btn_cursor' onClick={() => this.props._logout()}> Administrator Logout</li> : <li className='btn_cursor' onClick={() => this._openModal()}> Administrator Login </li>}
                 
                   <Modal  visible={this.state.visible} 
                           width="400" 
@@ -121,6 +122,8 @@ class header extends Component {
                       </form>
                     </div>
                   </Modal>  
+                <h5><Link to='/signup'>Sign Up</Link></h5>
+              </ul>
             </div>
         </div>
     );

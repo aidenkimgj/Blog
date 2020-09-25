@@ -217,3 +217,15 @@
   margin-left: 50px;
   width: 86.3%;
 }
+
+.btn_list {
+  list-style: none;
+  width: 80%;
+}
+
+.btn_list li {
+  float: left;
+  margin-right: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}

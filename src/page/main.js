@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './main.css';
 import { Route, Link, Switch } from 'react-router-dom';
-import { Write, List, View } from './index';
+import { Write, List, View, Signup } from './index';
 import { Right_Write } from './right';
 import { Category } from './left';
 
@@ -43,13 +43,15 @@ class main extends Component {
       <div className='Mains'>
         
         <div id='Mains-left'>
-        <Route path='/' render={props => <Category _changeCategory={_changeCategory} login={login}  />} exact/>
+        <Route path='/' render={props => <Category _changeCategory={_changeCategory} login={login} />} exact/>
         </div>
 
         <div>
           
           <Route path='/' component={this._withProps(List, {category: this.state.category})} exact /> 
           <Route path='/write' component={this._withProps(Write, {_getContents: _getContents, contents: contents})} />
+
+          <Route path='/signup' component={Signup} />
           
           <Route path='/view/:data' component={View} />
         </div>
@@ -59,7 +61,7 @@ class main extends Component {
         </div>
         
       </div>
-    )
+    );
   }
 }
 
