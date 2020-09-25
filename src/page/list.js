@@ -34,7 +34,7 @@ class list extends Component {
     }
 
     let search = queryString.parse(this.props.location.search);
-    console.log(search)
+    
     if(search) {
       search = search.search;
     }
@@ -59,7 +59,7 @@ class list extends Component {
     }
     
     this.setState({data: total_list.data, all_page: page_arr, search: search});
-    
+    sessionStorage.removeItem('page');
   }
 
   _changePage = el => {
@@ -81,7 +81,7 @@ class list extends Component {
   render() {
     
     const list = this.state.data;
-    console.log(list)
+    
     const {all_page, page, search} = this.state;
     
     
