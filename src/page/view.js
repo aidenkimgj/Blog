@@ -29,7 +29,7 @@ class view extends Component {
     
     const _date = `${getData.data.data[0].date.slice(0,10)} ${getData.data.data[0].date.slice(11,16)}`;
     
-    return this.setState({data: getData.data, date: _date})
+    return this.setState({data: getData.data, date: _date});
   }  
 
   _addViewCnt = async board_id => {
@@ -55,9 +55,7 @@ class view extends Component {
                 </div>  
               </div>
               
-              <div>
-                <textarea id='content_txt' name='contents' defaultValue={data.data[0].contents} readOnly />
-              </div>  
+              <div id='contents_div' dangerouslySetInnerHTML={{__html: data.data[0].contents}}></div>  
             </div>
             : null}
         </div>
