@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { SignUp } from '../page';
 import { Route, Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
@@ -122,7 +123,10 @@ class header extends Component {
                       </form>
                     </div>
                   </Modal>  
-                <h5><Link to='/signup'>Sign Up</Link></h5>
+                  <Route path='/signup' component={SignUp} />
+                <Link className='link_tit' to='/signup'> 
+                <h5>Sign Up</h5> 
+              </Link>
               </ul>
             </div>
         </div>
