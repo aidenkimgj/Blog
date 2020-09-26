@@ -60,7 +60,8 @@ module.exports = {
       const hash_pw = hashing.enc(body.id, body.password, salt);
 
       model.add.user(body, hash_pw, now_date, result => {
-        console.log(result);
+        
+        res.send(result);
       })
     }
   },
