@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './main.css';
 import { Route, Link, Switch } from 'react-router-dom';
-import { Write, List, View, Signup } from './index';
+import { Write, List, View } from './index';
 import { Right_Write } from './right';
 import { Category } from './left';
 
@@ -33,7 +33,7 @@ class main extends Component {
   }
 
   render() {
-    const {login} = this.props;
+    const {login, admin, user_ip, ip} = this.props;
     const {_changeCategory, _getContents} = this;
     const {contents} = this.state;
 
@@ -43,7 +43,7 @@ class main extends Component {
       <div className='Mains'>
         
         <div id='Mains-left'>
-        <Route path='/' render={props => <Category _changeCategory={_changeCategory} login={login} />} exact/>
+        <Route path='/' render={props => <Category _changeCategory={_changeCategory} login={login} admin={admin} user_ip={user_ip} ip={ip}/>} exact/>
         </div>
 
         <div>

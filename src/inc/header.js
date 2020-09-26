@@ -60,7 +60,7 @@ class header extends Component {
       console.log(res.data.msg);
       
       if(res.data.suc) {
-        this.props._login();
+        this.props._login(res.data);
         this._closeModal();
         return alert('You have been logged in.');
       } else {
@@ -76,59 +76,60 @@ class header extends Component {
   }
 
   render() {
-    const {login} = this.props;
-
+    const {login, admin, user_ip, ip} = this.props;
+    
     return (
         <div className='header_grid'>
-            <div className='acenter'> 
-              {login ? <h5><Link to ='/write'>Post</Link></h5> : null}
-            </div>
+          <div className='acenter'> 
+            {login && admin === 'Y' && user_ip === ip ? <h5><Link to ='/write'>Post</Link></h5> : null}
+          </div>
+          
+          <div className='acenter'>
             
-            <div className='acenter'>
+              <Route path='/'/> 
+              <Link className='link_tit' to='/'> 
+                <h3> Aiden's Blog </h3> 
+              </Link>
+          </div>
+
+          <div className='acenter'> 
+            <ul className='btn_list'>
+              {login ? <li className='btn_cursor' onClick={() => this.props._logout()}>Logout</li> : <li className='btn_cursor' onClick={() => this._openModal()}>Login</li>}
               
-                <Route path='/'/> 
-                <Link className='link_tit' to='/'> 
-                  <h3> Aiden's Blog </h3> 
-                </Link>
-            </div>
-
-            <div className='acenter'> 
-              <ul className='btn_list'>
-                {login ? <li className='btn_cursor' onClick={() => this.props._logout()}> Administrator Logout</li> : <li className='btn_cursor' onClick={() => this._openModal()}> Administrator Login </li>}
-                
-                  <Modal  visible={this.state.visible} 
-                          width="400" 
-                          height="360" 
-                          effect="fadeInDown" 
-                          onClickAway={() => this._closeModal()}>
-                    <div>
-                      <h4 className='acenter login_tit'> Administrator Login </h4>
-                      <form>
-                        <div className='login_div'>
-                          <div className = 'login_input_div'>
-                            <p> Administrator ID </p>
-                            <input type='text' name='id' onChange={() => this._changeID()}/>
-                          </div>
-                          
-                          <div className='login_input_div' id='password'>
-                            <p> Administrator Password </p>
-                            <input type='password' name='password' onChange={() => this._changePW()}/>    
-                          </div>
-
-                          <div className='submit_div'>
-                            <div> <input type='button' value='Login' onClick={() => this._selectUserData()}/></div>
-                            <div> <input type='button' value='Cancel' onClick={() => this._closeModal()}/></div>
-                          </div>
+                <Modal  visible={this.state.visible} 
+                        width="400" 
+                        height="360" 
+                        effect="fadeInDown" 
+                        onClickAway={() => this._closeModal()}>
+                  <div>
+                    <h4 className='acenter login_tit'> Administrator Login </h4>
+                    <form>
+                      <div className='login_div'>
+                        <div className = 'login_input_div'>
+                          <p> Administrator ID </p>
+                          <input type='text' name='id' onChange={() => this._changeID()}/>
                         </div>
-                      </form>
-                    </div>
-                  </Modal>  
-                  <Route path='/signup' component={SignUp} />
-                  <Link className='link_tit' to='/signup'> 
-                    <h5>Sign Up</h5> 
-                  </Link>
-              </ul>
-            </div>
+                        
+                        <div className='login_input_div' id='password'>
+                          <p> Administrator Password </p>
+                          <input type='password' name='password' onChange={() => this._changePW()}/>    
+                        </div>
+
+                        <div className='submit_div'>
+                          <div> <input type='button' value='Login' onClick={() => this._selectUserData()}/></div>
+                          <div> <input type='button' value='Cancel' onClick={() => this._closeModal()}/></div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </Modal>
+              
+              <Route path='/signup' component={SignUp} />
+              {!login ? <li><Link className='link_tit' to='/signup'> 
+              Sign Up 
+              </Link></li>: null}
+            </ul>
+          </div>
         </div>
     );
   }
