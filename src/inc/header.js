@@ -124,9 +124,9 @@ class header extends Component {
                     </div>
                   </Modal>  
                   <Route path='/signup' component={SignUp} />
-                <Link className='link_tit' to='/signup'> 
-                <h5>Sign Up</h5> 
-              </Link>
+                  <Link className='link_tit' to='/signup'> 
+                    <h5>Sign Up</h5> 
+                  </Link>
               </ul>
             </div>
         </div>
