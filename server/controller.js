@@ -5,19 +5,23 @@ const hashing = require(path.join(__dirname, 'config', 'hashing.js'));
 const moment = require('moment-timezone');
 moment.tz.setDefault("America/Calgary");
 const now_date = moment().format('YYYY-MM-DD HH:mm:ss');
+const user_ip = require('ip');
+const my_ip = require(path.join(__dirname, 'config', 'ip.js'));
 
 module.exports = {
   needs: () => upload,
   api: {
       sendPw: (req, res) => {
         const body = req.body;
-        const hash = hashing.enc(body.id, body.password, salt)
+        const hash = hashing.enc(body.id, body.password, salt);
 
         model.api.searchInfo(body, hash, result => {
           let obj = {};
+          
           if(result[0]) {
-            obj['suc'] = true;
+            obj['suc'] = result[0].dataValues;
             obj['msg'] = 'Login Sucessful';
+            obj['ip'] = user_ip.address();
           } else {
             obj['suc'] = false;
             obj['msg'] = 'Login Failed';
@@ -25,6 +29,11 @@ module.exports = {
           res.send(obj); 
         });
       },
+
+      getIp: (req, res) => {
+        const ip = my_ip.ip();
+        res.send(ip);
+      }
   },
   
   add: {

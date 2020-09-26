@@ -24,3 +24,6 @@ yarn-error.log*
 
 # database
 /server/config/db.json
+
+# ip
+/server/config/ip.js
