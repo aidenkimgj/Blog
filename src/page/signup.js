@@ -48,8 +48,8 @@ class signup extends Component {
     const _password = this.state.password.trim();
     const _passwordCheck = this.state.passwordCheck.trim();
     const _email = this.state.email.trim();
-    const id_check = /^[a-z]+[a-z0-9]{5,19}$/g;
-    const pw_check = /^[a-z]+[a-z0-9]{5,19}$/g;
+    const id_check = /^[a-zA-Z]+[a-zA-Z0-9]{5,19}$/g;
+    const pw_check = /^[a-zA-Z]+[a-zA-Z0-9]{5,19}$/g;
     const email_check = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     
     if(!id_check.test(_id)) {
