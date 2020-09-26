@@ -38,6 +38,7 @@ let sequelize = new Sequelize(
   db.Admin = require('./admin')(sequelize, Sequelize);
   db.Board = require('./board')(sequelize, Sequelize);
   db.Category = require('./category')(sequelize, Sequelize);
+  db.User = require('./user')(sequelize, Sequelize);
 
   db.Category.hasMany(db.Board, {
     foreignKey: 'cat_id',
