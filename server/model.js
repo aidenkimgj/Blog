@@ -2,7 +2,7 @@ const sequelize = require('./models').sequelize;
 const moment = require('moment-timezone');
 moment.tz.setDefault("America/Calgary");
 const now_date = moment().format('YYYY-MM-DD HH:mm:ss');
-console.log(now_date)
+// console.log(now_date)
 
 const {
   Admin,

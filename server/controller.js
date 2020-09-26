@@ -29,7 +29,7 @@ module.exports = {
   
   add: {
     board: (req, res) => {
-      console.log(req.body);
+      // console.log(req.body);
       const body = req.body;
 
       model.add.board(body, result => {
