@@ -51,7 +51,7 @@ class main extends Component {
           <Route path='/' component={this._withProps(List, {category: this.state.category})} exact /> 
           <Route path='/write' component={this._withProps(Write, {_getContents: _getContents, contents: contents})} />
 
-          <Route path='/signup' component={Signup} />
+          
           
           <Route path='/view/:data' component={View} />
         </div>
