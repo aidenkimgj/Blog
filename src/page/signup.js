@@ -73,10 +73,17 @@ class signup extends Component {
       data: obj,
       headers: new Headers()
     });
+
+    if(!add_user) {
+      return alert('ID already exists!');
+    } else {
+      alert('Sign up has been completed.')
+      return window.location.replace('/');
+    }
   }
 
   render() {
-    console.log('sign');
+    
     return (
         
       <div>

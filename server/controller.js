@@ -1,8 +1,10 @@
 const path = require('path');
 const model = require('./model');
 const salt = require(path.join(__dirname, 'config', 'db.json')).salt;
-
 const hashing = require(path.join(__dirname, 'config', 'hashing.js'));
+const moment = require('moment-timezone');
+moment.tz.setDefault("America/Calgary");
+const now_date = moment().format('YYYY-MM-DD HH:mm:ss');
 
 module.exports = {
   needs: () => upload,
@@ -51,6 +53,15 @@ module.exports = {
         }
         res.send(obj);
       });
+    },
+
+    user: (req, res) => {
+      const body = req.body;
+      const hash_pw = hashing.enc(body.id, body.password, salt);
+
+      model.add.user(body, hash_pw, now_date, result => {
+        console.log(result);
+      })
     }
   },
 

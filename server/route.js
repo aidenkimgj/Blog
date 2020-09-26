@@ -12,5 +12,6 @@ router.get('/get/category', controller.get.category);
 router.post('/add/category', controller.add.category);
 router.post('/delete/category', controller.delete.category);
 router.post('/modify/category', controller.modify.category);
+router.post('/add/user', controller.add.user);
 
 module.exports = router; 

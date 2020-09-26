@@ -1,13 +1,14 @@
 const sequelize = require('./models').sequelize;
-let moment = require('moment-timezone');
-
-const now_date = moment().tz("America/Calgary").format('YYYY-MM-DD HH:mm:ss');
-
+const moment = require('moment-timezone');
+moment.tz.setDefault("America/Calgary");
+const now_date = moment().format('YYYY-MM-DD HH:mm:ss');
+console.log(now_date)
 
 const {
   Admin,
   Board,
   Category,
+  User,
   Sequelize:{Op}
 } = require('./models');
 sequelize.query('SET NAMES utf8;');
@@ -60,6 +61,32 @@ module.exports = {
           .catch(err => {
             throw(err);
           })
+        }
+      })
+      .catch(err => {
+        throw err;
+      });
+    },
+
+    user: (body, hash_pw, now_date, callback) => {
+      User.count({
+        where: {id: body.id}
+      })
+      .then(cnt => {
+        if(cnt > 0) {
+          callback(false);
+        } else {
+          User.create({
+            admin: 'N',
+            id: body.id,
+            password: hash_pw,
+            email: body.email,
+            signup_date: now_date
+          })
+          .then(() => callback(true))
+          .catch(err => {
+            throw err;
+          });
         }
       })
       .catch(err => {
