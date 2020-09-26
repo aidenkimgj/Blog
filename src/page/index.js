@@ -3,4 +3,4 @@ export { default as Write } from './write';
 export { default as List } from './list';
 export { default as Search } from './search';
 export { default as View } from './view';
-export { default as Signup } from './signup';
+export { default as SignUp } from './signup';

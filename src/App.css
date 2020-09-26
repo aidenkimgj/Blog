@@ -33,7 +33,15 @@
 }
 
 #password {
-  margin-top: 40px;
+  margin-top: 30px;
+}
+
+#password_check {
+  margin-top: 30px;
+}
+
+#email {
+  margin-top: 30px;
 }
 
 .login_input_div input {
