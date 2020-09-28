@@ -10,14 +10,9 @@ class main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      category: '',
+      category: "",
       contents: "",
     }
-  }
-
-  _changeCategory = (target) => {
-    this.setState({category: target});
-    sessionStorage.setItem('category', target)
   }
 
   _withProps = (Component, props) => {
@@ -33,8 +28,8 @@ class main extends Component {
   }
 
   render() {
-    const {login, admin, user_ip, ip} = this.props;
-    const {_changeCategory, _getContents} = this;
+    const {login, admin, user_ip, ip, list_data, list_all_page, list_search, list_page, _changePage, _changeCategory} = this.props;
+    const {_getContents} = this;
     const {contents} = this.state;
 
     
@@ -43,12 +38,19 @@ class main extends Component {
       <div className='Mains'>
         
         <div id='Mains-left'>
-        <Route path='/' render={props => <Category _changeCategory={_changeCategory} login={login} admin={admin} user_ip={user_ip} ip={ip}/>} exact/>
+          <Route path='/' render={props => <Category _changeCategory={_changeCategory} login={login} admin={admin} user_ip={user_ip} ip={ip}/>} exact/>
         </div>
 
         <div>
           
-          <Route path='/' component={this._withProps(List, {category: this.state.category})} exact /> 
+          <Route path='/' 
+                component={this._withProps(List, {
+                  category: this.state.category,
+                  list_data: list_data,
+                  list_all_page: list_all_page,
+                  list_search: list_search,
+                  list_page: list_page,
+                  _changePage: _changePage})} exact /> 
           <Route path='/write' component={this._withProps(Write, {_getContents: _getContents, contents: contents})} />
 
           
