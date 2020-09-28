@@ -92,38 +92,38 @@ class signup extends Component {
                         height="500" 
                         effect="fadeInDown" 
                         onClickAway={() => this._closeModal()}>
-                  <div>
-                    <h4 className='acenter login_tit'>Sign Up</h4>
-                    <form>
-                      <div className='login_div'>
-                        <div className = 'login_input_div'>
-                          <p>ID</p>
-                          <input type='text' name='user_id' placeholder='Enter ID' onChange={() => this._changeID()}/>
-                        </div>
-                        
-                        <div className='login_input_div' id='password'>
-                          <p>Password</p>
-                          <input type='password' name='user_password' placeholder='Enter Password' onChange={() => this._changePW()}/>    
-                        </div>
+          <div>
+            <h4 className='acenter login_tit'>Sign Up</h4>
+            <form>
+              <div className='login_div'>
+                <div className = 'login_input_div'>
+                  <p>ID</p>
+                  <input type='text' name='user_id' placeholder='Enter ID' onChange={() => this._changeID()}/>
+                </div>
+                
+                <div className='login_input_div' id='password'>
+                  <p>Password</p>
+                  <input type='password' name='user_password' placeholder='Enter Password' onChange={() => this._changePW()}/>    
+                </div>
 
-                        <div className='login_input_div'  id='password_check'>
-                          <p>Confirmation Password</p>
-                          <input type='password' name='password_check' placeholder='Repeat Password' onChange={() => this._changePasswordCheck()}/>    
-                        </div>
-                        
-                        <div className = 'login_input_div' id='email'>
-                          <p>Email</p>
-                          <input type='text' name='email' placeholder='Enter Email' onChange={() => this._changeEmail()}/>
-                        </div>
+                <div className='login_input_div'  id='password_check'>
+                  <p>Confirmation Password</p>
+                  <input type='password' name='password_check' placeholder='Repeat Password' onChange={() => this._changePasswordCheck()}/>    
+                </div>
+                
+                <div className = 'login_input_div' id='email'>
+                  <p>Email</p>
+                  <input type='text' name='email' placeholder='Enter Email' onChange={() => this._changeEmail()}/>
+                </div>
 
-                        <div className='submit_div'>
-                          <div> <input type='button' value='Sign Up' onClick={() => this._selectNewUserData()}/></div>
-                          <div> <input type='button' value='Cancel' onClick={() => this._closeModal()}/></div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </Modal>
+                <div className='submit_div'>
+                  <div> <input type='button' value='Sign Up' onClick={() => this._selectNewUserData()}/></div>
+                  <div> <input type='button' value='Cancel' onClick={() => this._closeModal()}/></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </Modal>
       </div>
         
     );
