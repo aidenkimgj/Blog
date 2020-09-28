@@ -19,12 +19,6 @@ class header extends Component {
     return this.props._toggleModal(true);
   }
 
-  _closeModal = () => {
-    this.setState({
-      visible: false
-    });
-  }
-
   _logout = () => {
     if(window.confirm('Would like to logout?')) {
       this.props._logout();
