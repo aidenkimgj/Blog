@@ -14,5 +14,6 @@ router.post('/delete/category', controller.delete.category);
 router.post('/modify/category', controller.modify.category);
 router.post('/add/user', controller.add.user);
 router.get('/get/ip', controller.api.getIp);
+router.post('/search/id', controller.search.id);
 
 module.exports = router; 

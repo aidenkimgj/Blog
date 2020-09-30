@@ -112,7 +112,7 @@ class App extends Component {
             search: search, 
             category: _category}
     });
-    
+    console.log(total_list);
     let page_arr = [];
     
     for(let i = 1; i <= Math.ceil(total_cnt.data.cnt / list_limit); i++) {

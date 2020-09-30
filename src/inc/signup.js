@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+// import '../App.css';
 import axios from 'axios';
 import Modal from 'react-awesome-modal';
 
@@ -97,8 +97,8 @@ class signup extends Component {
             <form>
               <div className='login_div'>
                 <div className = 'login_input_div'>
-                  <p>ID</p>
-                  <input type='text' name='user_id' placeholder='Enter ID' onChange={() => this._changeID()}/>
+                  <p>Username</p>
+                  <input type='text' name='user_id' placeholder='Enter Username' onChange={() => this._changeID()}/>
                 </div>
                 
                 <div className='login_input_div' id='password'>

@@ -17,7 +17,7 @@ class write extends Component {
         </div>
 
         <div>
-          <CKEditor _getContents = {_getContents} contents={contents} /> 
+          <CKEditor _getContents={_getContents} contents={contents} /> 
         </div>
       </div>
     );

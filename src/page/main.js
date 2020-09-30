@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './main.css';
+// import './main.css';
 import { Route, Link, Switch } from 'react-router-dom';
 import { Write, List, View } from './index';
 import { Right_Write } from './right';
