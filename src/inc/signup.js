@@ -37,7 +37,7 @@ class signup extends Component {
 
   _closeModal = function() {
     this.setState({
-      visible: false
+      visible: true,
     });
     alert('Sign up has been cancelled!');
       return window.location.replace('/');
@@ -87,7 +87,7 @@ class signup extends Component {
     return (
         
       <div>
-        <Modal  visible = {this.props.signup_modal} 
+        <Modal  visible = {this.state.visible} 
                         width="400" 
                         height="500" 
                         effect="fadeInDown" 
