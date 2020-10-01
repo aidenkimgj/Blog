@@ -8,14 +8,32 @@ class back_and_close extends Component {
       back: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTcuMDI2IDIyLjk1N2MxMC45NTctMTEuNDIxLTIuMzI2LTIwLjg2NS0xMC4zODQtMTMuMzA5bDIuNDY0IDIuMzUyaC05LjEwNnYtOC45NDdsMi4yMzIgMi4yMjljMTQuNzk0LTEzLjIwMyAzMS41MSA3LjA1MSAxNC43OTQgMTcuNjc1eiIvPjwvc3ZnPg==",
     }
   }
+
+  _controller = (target, type) => {
+    const {_resetIDResult, _backSearchModal, _closeSearchModal} = this.props;
+
+    if(target === 'id') {
+      _resetIDResult();
+    }
+
+    if(type === 'back') {
+      _backSearchModal(target);
+    } else if(type === 'close') {
+      _closeSearchModal(target);
+    }
+  }
   render() {
     const {close, back} = this.state;
-    const {target, _backSearchModal, _closeSearchModal} = this.props;
+    const {target} = this.props;
+  
     return(
       <div className='back_and_close'>
-        <div id='back_icon'><img src={back} onClick={() => {_backSearchModal(target);
-        _resetIDResult(); }}/></div>
-        <div id='close_icon'><img src={close} onClick={() => _closeSearchModal(target)}/></div>
+        <div id='back_icon'>
+          <img src={back} onClick={() => this._controller(target, 'back')}/>
+        </div>
+        <div id='close_icon'>
+          <img src={close} onClick={() => this._controller(target, 'close')}/>
+        </div>
       </div>
     );
   }

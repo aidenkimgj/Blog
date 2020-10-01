@@ -299,3 +299,7 @@ input[name=search_id_submit] {
   cursor: pointer;
   padding: 5px;
 }
+
+.Search_id_result {
+  margin-top: 50px;
+}

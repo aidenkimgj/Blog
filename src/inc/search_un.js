@@ -24,14 +24,13 @@ class search_un extends Component {
       data: {email: user_email},
       headers: new Headers()
     });
-    console.log(res);
+    
     if(res.data.length === 0) {
       document.getElementsByName('search_id_email')[0].value = "";
       return alert('No matching data found, Please check again.')
     }
       this.setState({result: res.data});
         
-    console.log(this.state);
   }
 
   _resetIDResult = () => {
@@ -52,6 +51,7 @@ class search_un extends Component {
                 _closeSearchModal={_closeSearchModal}
                 _backSearchModal={_backSearchModal}
                 target={target}
+                _resetIDResult={_resetIDResult}
               />  
               {!result ? 
               <div className='Search_div'>
@@ -64,12 +64,12 @@ class search_un extends Component {
                   <input type='button'  value='Search' name='search_id_submit' onClick={() => this._searchUserID()}/>
                 </div>
               </div> :
+              
               <div>
                 <h4>User Information</h4>
 
                 <div className='Search_id_result'>
-                  <div className='Search_id_result_div'>
-                    <div>
+                  <div>
                       <h5>Username</h5>
                       {result[0].id}
                     </div>
@@ -78,13 +78,6 @@ class search_un extends Component {
                       <h5>Signup Date</h5>
                       {result[0].signup_date.slice(0, 10)}
                     </div>
-                  </div>
-
-                  <div>
-                    <input type='button' value='Return' name='search_id_back'
-                            onClick={() => this._resetBack()}
-                    />
-                  </div>
                 </div>
               </div>}
               
