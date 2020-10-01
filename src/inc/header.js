@@ -52,10 +52,10 @@ class header extends Component {
               
               <Login _login={_login} login_modal={login_modal} _toggleModal={_toggleModal}/>  
               
-              <Route path='/signup' component={SignUp} />
-              {!login ? <li><Link className='link_tit' to='/signup'> 
-              Sign Up 
-              </Link></li>: null}
+              
+              {!login ? <li className='link_tit' onClick={() => this._openModal()}>Sign up</li>: null}
+
+              <SignUp signup_modal={login_modal}/>
             </ul>
           </div>
         </div>

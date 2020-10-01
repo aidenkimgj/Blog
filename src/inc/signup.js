@@ -87,7 +87,7 @@ class signup extends Component {
     return (
         
       <div>
-        <Modal  visible = {this.state.visible} 
+        <Modal  visible = {this.props.signup_modal} 
                         width="400" 
                         height="500" 
                         effect="fadeInDown" 
