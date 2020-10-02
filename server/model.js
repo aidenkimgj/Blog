@@ -276,6 +276,19 @@ module.exports = {
       .catch(err => {
         throw err;
       });
-    }
-  }
+    },
+
+    pw: (body, callback) => {
+      User.findAll({
+        where: {
+          id: body.id,
+          email: body.email
+        }
+      })
+      .then(result => {callback(result);})
+      .catch(err => {
+        throw err;
+      });
+    },
+  },
 }

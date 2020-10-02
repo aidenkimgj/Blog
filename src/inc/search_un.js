@@ -27,7 +27,7 @@ class search_un extends Component {
     
     if(res.data.length === 0) {
       document.getElementsByName('search_id_email')[0].value = "";
-      return alert('No matching data found, Please check again.')
+      return alert('No matching data found, Please check again.');
     }
       this.setState({result: res.data});
         
@@ -54,12 +54,13 @@ class search_un extends Component {
                 _resetIDResult={_resetIDResult}
               />  
               {!result ? 
-              <div className='Search_div'>
+              <div className='Search_id_div'>
                 <h4>Find Username</h4>
                 <div>
                   <h5>Email</h5>
                   <input type='text' maxLength='30' name='search_id_email' placeholder='Enter your email'/>
                 </div>
+                
                 <div>
                   <input type='button'  value='Search' name='search_id_submit' onClick={() => this._searchUserID()}/>
                 </div>

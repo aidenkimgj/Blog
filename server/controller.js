@@ -176,6 +176,14 @@ module.exports = {
       model.search.id(body, result => {
         res.send(result);
       });
-    }
+    },
+
+    pw: (req, res) => {
+      const body = req.body;
+
+      model.search.pw(body, result => {
+        res.send(result);
+      });
+    },
   },
 } 

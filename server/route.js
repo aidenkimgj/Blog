@@ -15,5 +15,6 @@ router.post('/modify/category', controller.modify.category);
 router.post('/add/user', controller.add.user);
 router.get('/get/ip', controller.api.getIp);
 router.post('/search/id', controller.search.id);
+router.post('/search/pw', controller.search.pw);
 
 module.exports = router; 
