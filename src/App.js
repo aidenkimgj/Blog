@@ -146,7 +146,8 @@ class App extends Component {
                 _logout={_logout} 
                 ip={ip} 
                 login_modal={login_modal} 
-                _toggleModal={_toggleModal} />
+                _toggleModal={_toggleModal}
+                _changeCategory = {_changeCategory} />
         </div>
 
         <div>

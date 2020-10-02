@@ -23,14 +23,9 @@ class header extends Component {
       this.props._logout();
     }
   }
-
-  _categorySessionRemove = () => {
-    sessionStorage.removeItem('category');
-    return window.location.replace('/');
-  }
-
+  
   render() {
-    const {login, admin, user_ip, ip, _login, login_modal, _toggleModal} = this.props;
+    const {login, admin, user_ip, ip, _login, login_modal, _toggleModal, _changeCategory} = this.props;
     
     return (
         <div className='header_grid'>
@@ -39,11 +34,9 @@ class header extends Component {
           </div>
           
           <div className='acenter'>
-            
-              <Route path='/'/> 
-              <Link className='link_tit' to='/' onClick={() => this._categorySessionRemove()}> 
-                <h3> Aiden's Blog </h3> 
-              </Link>
+            <Link className='link_tit' to='/' onClick={() => _changeCategory('')}> 
+              <h3> Aiden's Blog </h3> 
+            </Link>
           </div>
 
           <div className='acenter'> 
