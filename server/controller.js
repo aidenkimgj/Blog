@@ -6,7 +6,37 @@ const moment = require('moment-timezone');
 moment.tz.setDefault("America/Calgary");
 const now_date = moment().format('YYYY-MM-DD HH:mm:ss');
 const user_ip = require('ip');
-const my_ip = require(path.join(__dirname, 'config', 'ip.js'));
+const personal_info = require(path.join(__dirname, 'config', 'personal.js'));
+const nodeMailer = require('nodemailer');
+
+const mailPoster = nodeMailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'gksxogns2000@gmail.com',
+    pass: personal_info.email_pass(),
+  }
+});
+
+const mailOpt = (user_data, title, contents) => {
+  const mailOption = {
+    from: 'gksxogns2000@gmail.com',
+    to: user_data.email,
+    subject: title,
+    text: contents,
+  };
+  
+  return mailOption;
+}
+
+const send_Mail = mailOption => {
+  mailPoster.sendMail(mailOption, (error, info) => {
+    if(error) {
+      console.log('Error', error);
+    } else {
+      console.log('Send has been completed', info.response);
+    }
+  });
+}
 
 module.exports = {
   needs: () => upload,
@@ -31,7 +61,7 @@ module.exports = {
       },
 
       getIp: (req, res) => {
-        const ip = my_ip.ip();
+        const ip = personal_info.ip();
         res.send(ip);
       }
   },
@@ -182,8 +212,34 @@ module.exports = {
       const body = req.body;
 
       model.search.pw(body, result => {
-        res.send(result);
+        let res_data = {};
+
+        if(result[0]) {
+          const title = 'This is OTP for Aiden\'s Blog';
+          const contents = () => {
+            let number = "";
+            let random = 0;
+
+            for(let i = 0; i < 6; i++) {
+              random = Math.floor(Math.random()*10);
+              number += random;
+            }
+            res_data['secret'] = number;
+            return `Please type follow number ${number} into authentication box`
+          }
+
+          const mailOption = mailOpt(result[0].dataValues, title, contents());
+
+          send_Mail(mailOption);
+
+          res_data['result'] = result;
+          res.send(res_data);
+        
+        } else {
+          res.send(false);
+        }
+        
       });
-    },
+    }, 
   },
 } 
