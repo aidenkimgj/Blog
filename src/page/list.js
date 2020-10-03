@@ -15,7 +15,7 @@ class list extends Component {
         
         <div className='list_grid list_tit'>
           <div>Title</div>
-          <div>Hits</div>
+          <div className='view'>Hits</div>
           <div className='acenter'>Date</div>
         </div>
         
@@ -26,7 +26,7 @@ class list extends Component {
           return(
             <div className='list_grid list_data' key={key}>
                 <div> <Link className='list_link' to={view_url}>{el.title}</Link></div>
-                <div className='veiw'>{el.view_cnt}</div>
+                <div className='view'>{el.view_cnt}</div>
                                         
                 <div className='acenter'>{el.date.slice(0, 10)}</div>
               </div>

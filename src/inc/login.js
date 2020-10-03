@@ -83,10 +83,10 @@ class login extends Component {
     return (
         <div>
           <Modal  visible={this.props.login_modal} 
-                        width="400" 
-                        height="360" 
-                        effect="fadeInDown" 
-                        onClickAway={() => this.props._toggleModal(false)}>
+                  width="400" 
+                  height="360" 
+                  effect="fadeInDown" 
+                  onClickAway={() => this.props._toggleModal(false)}>
             <div>
               <h4 className='acenter login_tit'> Login </h4>
               <form>

@@ -30,6 +30,18 @@
 .login_input_div p {
   font-weight: bold;
   margin-bottom: 8px;
+  text-align: left;
+  margin-left: 45px;
+}
+
+.login_input_div input {
+  border: none;
+  border-bottom: solid 1px #ababab;
+  outline: none;
+  width: 70%;
+  padding: 4px;
+  margin-top: -10px;
+  
 }
 
 #password {
@@ -44,20 +56,15 @@
   margin-top: 30px;
 }
 
-.login_input_div input {
-  width: 92%;
-  padding: 4px;
-  margin-top: -10px;
-}
 
 .login_div {
-  text-align: left;
-  padding-left: 20px;
+  text-align: center;
+  /* padding-left: 20px; */
 }
 
 .submit_div {
   display: grid;
-  grid-template-columns: 45% auto;
+  grid-template-columns: 50% auto;
   margin-top: 12%;
 }
 
