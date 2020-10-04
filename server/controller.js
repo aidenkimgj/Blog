@@ -165,6 +165,14 @@ module.exports = {
           }
         });
       }    
+    },
+    password: (req, res) => {
+      const body = req.body;
+      const hash_pw = hashing.enc(body.user_id, body.change_password, salt);
+
+      model.update.password(body, hash_pw, result => {
+        res.send(result);
+      })
     }
   },
 

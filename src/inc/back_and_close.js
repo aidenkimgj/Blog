@@ -10,10 +10,12 @@ class back_and_close extends Component {
   }
 
   _controller = (target, type) => {
-    const {_resetIDResult, _backSearchModal, _closeSearchModal} = this.props;
+    const {_resetIDResult, _resetPWResult, _backSearchModal, _closeSearchModal} = this.props;
 
     if(target === 'id') {
       _resetIDResult();
+    } else if(target === 'pw') {
+      _resetPWResult();
     }
 
     if(type === 'back') {

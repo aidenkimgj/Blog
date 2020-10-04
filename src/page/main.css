@@ -331,5 +331,63 @@ input[name=search_pw_submit] {
 }
 
 .search_result_div p{
-  margin-top: 100px;
+  margin-top: 70px;
+}
+
+input[name=pw_secret] {
+  padding: 3px;
+  width: 50%;
+  margin-left:-20px;
+  margin-right: 40px;
+  margin-top: 30px;
+}
+
+input[name=pw_secret_submit] {
+  position: absolute;
+  margin: 32px 0px 0px -30px;
+  cursor: pointer;
+}
+
+.change_password_div div {
+  margin-top: 30px;
+}
+
+.change_password_div div span {
+  line-height: 0px;
+  font-size: 15px;
+}
+
+.change_password_div div span p {
+  color: #c98989;
+  font-size: 14px;
+}
+
+.change_password_div div div {
+  line-height: 0px;
+  margin-top: 40px;
+  
+}
+.change_password_div div div input {
+  border-style: hidden;
+  border-bottom: solid 1px #ababab;
+}
+.change_password_div div div input:focus {
+  outline: none;
+}
+
+.change_password_div div h5 {
+  text-align: left;
+  margin-left: 95px;
+  
+}
+
+.change_password_div div div:last-of-type {
+  margin-top: 10px;
+}
+
+input[name=change_password_submit] {
+  margin-top: 30px;
+  border: solid 1px #ababab;
+  border-radius: 3px;
+  cursor: pointer;
 }

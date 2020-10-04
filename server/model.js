@@ -226,6 +226,19 @@ module.exports = {
       .catch(err => {
         throw err;
       });
+    },
+
+    password: (body, hash_pw, callback) => {
+
+      User.update({password: hash_pw}, {
+        where: {id: body.user_id}
+      })
+      .then(result => {
+        callback(result);
+      })
+      .catch(err => {
+        throw err;
+      });
     }
   },
 

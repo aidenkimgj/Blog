@@ -59,7 +59,7 @@ class signup extends Component {
     if(!pw_check.test(_password)) {
       return alert('Password must be 6 to 20 letters starting with letter!');
     } else if (_password !== _passwordCheck) {
-      return alert('Password and Confirmation Password do not match!')
+      return alert('Password and Confirmation Password do not match!');
     }
     
     if(!_email.match(email_check)) {
