@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import './main.css';
 import axios from 'axios';
 
+
 class view extends Component {
   constructor(props) {
     super(props)
     this.state = {
       data: [],
       date: "",
+      none_like: "https://image.flaticon.com/icons/png/512/25/25297.png",
+      like: "https://image.flaticon.com/icons/png/512/25/25423.png",
     }
   }
 
@@ -40,9 +43,13 @@ class view extends Component {
     });
   }
 
+  _toggleLike = async () => {
+    alert('Like clicked');
+  }
+
   render() {
 
-    const {data, date} = this.state;
+    const {data, date, none_like} = this.state;
     return (
         <div className='Write'>
             {data.data ? 
@@ -55,7 +62,17 @@ class view extends Component {
                 </div>  
               </div>
               
-              <div id='contents_div' dangerouslySetInnerHTML={{__html: data.data[0].contents}}></div>  
+              <div id='contents_div' dangerouslySetInnerHTML={{__html: data.data[0].contents}}></div> 
+              
+              <div className='other_div'>
+                <div>{/*left */}</div>
+                <div className='Like'>
+                  <img src={none_like} onClick={() => this._toggleLike()}/>
+                  <h5>Like</h5>
+                </div>
+                <div>{/*right*/}</div>
+
+              </div>
             </div>
             : null}
         </div>

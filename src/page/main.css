@@ -23,7 +23,7 @@
 
 #title_txt {
   width: 87%;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   border: none;
   font-size: 22px;
   border-bottom: solid 1px #aabbaa;
@@ -390,4 +390,24 @@ input[name=change_password_submit] {
   border: solid 1px #ababab;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.other_div {
+  margin-top: 300px;
+  border-top: solid 1px #ababab;
+  display: grid;
+  grid-template-columns: 25% 40% 25%;
+}
+
+.Like {
+  margin: 50px 0px 0px 56%;
+}
+
+.Like img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.Like h5 {
+  margin-top: 10px;
 }
