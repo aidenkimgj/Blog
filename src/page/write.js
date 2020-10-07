@@ -8,12 +8,12 @@ class write extends Component {
   }
 
   render() {
-    const {_getContents, contents} = this.props;
+    const {_getTtitles, title, _getContents, contents} = this.props;
 
     return(
       <div className='Write'>
         <div id='Title'>
-          <input type='text' id='title_txt' name='title' placeholder='Title'/>
+          <input type='text' id='title_txt' name='title' placeholder='Title' defaultValue={title} onBlur={() => _getTtitles()}/>
         </div>
 
         <div>

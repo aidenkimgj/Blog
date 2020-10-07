@@ -12,6 +12,7 @@ class main extends Component {
     this.state = {
       category: "",
       contents: "",
+      title: "",
     }
   }
 
@@ -27,10 +28,16 @@ class main extends Component {
     this.setState({contents: _contents});
   }
 
+  _getTtitles = () => {
+    const _title = document.getElementsByName('title')[0].value.trim();
+
+    this.setState({title: _title});
+  }
+
   render() {
     const {login, admin, user_ip, ip, list_data, list_all_page, list_search, list_page, _changePage, _changeCategory} = this.props;
-    const {_getContents} = this;
-    const {contents} = this.state;
+    const {_getContents, _getTtitles} = this;
+    const {contents, title} = this.state;
 
     
 
@@ -51,7 +58,7 @@ class main extends Component {
                   list_search: list_search,
                   list_page: list_page,
                   _changePage: _changePage})} exact /> 
-          <Route path='/write' component={this._withProps(Write, {_getContents: _getContents, contents: contents})} />
+          <Route path='/write' component={this._withProps(Write, {_getTtitles: _getTtitles, _getContents: _getContents, title: title, contents: contents})} />
 
           
           
@@ -59,7 +66,7 @@ class main extends Component {
         </div>
 
         <div id='Mains-right'>  
-          <Route path='/write' component={this._withProps(Right_Write, {contents: contents})} />
+          <Route path='/write' component={this._withProps(Right_Write, {title: title, contents: contents})} />
         </div>
         
       </div>

@@ -13,7 +13,7 @@ class right_write extends Component {
   }
 
   _submitBoard = async () => {
-    const _title = document.getElementsByName('title')[0].value.trim();
+    const _title = this.props.title;
     const contents = this.props.contents;
 
     if(_title === "") {
