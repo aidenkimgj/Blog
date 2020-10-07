@@ -33,6 +33,12 @@ module.exports = (sequelize, DataTypes) => {
       cat_id: {
         type: DataTypes.INTEGER(10),
         allowNull: false
+      },
+
+      likes: {
+        type: DataTypes.INTEGER(10),
+        allowNull: false,
+        defaultValue: 0
       }
     },
     {

@@ -5,10 +5,10 @@ const now_date = moment().format('YYYY-MM-DD HH:mm:ss');
 // console.log(now_date)
 
 const {
-  Admin,
   Board,
   Category,
   User,
+  Like,
   Sequelize:{Op}
 } = require('./models');
 sequelize.query('SET NAMES utf8;');
@@ -37,6 +37,7 @@ module.exports = {
         date: now_date,
         view_cnt: 0,
         cat_id: 0,
+        likes: 0,
       })
       .then(data => {
         callback(true);

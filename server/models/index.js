@@ -39,6 +39,7 @@ let sequelize = new Sequelize(
   db.Board = require('./board')(sequelize, Sequelize);
   db.Category = require('./category')(sequelize, Sequelize);
   db.User = require('./user')(sequelize, Sequelize);
+  db.Like = require('./like')(sequelize, Sequelize);
 
   db.Category.hasMany(db.Board, {
     foreignKey: 'cat_id',
@@ -48,6 +49,16 @@ let sequelize = new Sequelize(
   db.Board.belongsTo(db.Category, {
     foreignKey: 'cat_id',
     targetKey: 'id'
+  });
+
+  db.Board.belongsToMany(db.User, {
+    through: 'like',
+    foreignKey: 'board_id'
+  });
+
+  db.User.belongsToMany(db.Board, {
+    through: 'like',
+    foreignKey: 'user_id'
   });
 
 

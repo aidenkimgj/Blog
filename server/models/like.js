@@ -1,22 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'admin',
+    'like',
     {
-      id: {
+      like_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
-      },
-
-      user_id: {
-        type: DataTypes.STRING(30),
+        autoIncrement: true,
         allowNull: false,
-        unique: true
-      },
-
-      password: {
-        type: DataTypes.STRING(100),
-        allowNull: false
       },
     },
     {
@@ -26,4 +16,3 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 }
-
