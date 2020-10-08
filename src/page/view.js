@@ -11,6 +11,8 @@ class view extends Component {
       date: "",
       none_like: "https://image.flaticon.com/icons/png/512/25/25297.png",
       like: "https://image.flaticon.com/icons/png/512/25/25423.png",
+      like_exist: false,
+      like_num: 0
     }
   }
 
@@ -18,6 +20,7 @@ class view extends Component {
     const board_id = this.props.match.params.data;
     this._getData(board_id);
     this._addViewCnt(board_id);
+    this._getLikeInfo();
   }
 
   _getData = async board_id => {
@@ -44,7 +47,47 @@ class view extends Component {
   }
 
   _toggleLike = async () => {
-    alert('Like clicked');
+    const {user_id, login, _toggleModal} = this.props;
+
+    if(!login) {
+      alert('Login needs to be done!');
+      return _toggleModal(true);
+    }
+    const board_id = this.props.match.params.data;
+    const obj = {type: 'add', user_id: user_id, board_id: board_id}
+    
+    const res = await axios('/update/like', {
+      method: 'POST',
+      data: obj,
+      headers: new Headers()
+    });
+
+    if(!res.data) {
+      return alert('This post has been already liked by you.');
+    } else {
+      this.setState({like_exist: true});
+      return alert(`You have clicked 'the like button' on this post.`);
+    }
+  }
+
+  _getLikeInfo = async () => {
+    const {user_id, login} = this.props;
+
+    if(login) {
+
+      const board_id = this.props.match.params.data;
+      const obj = {user_id: user_id, board_id: board_id}
+
+      const getData = await axios('/check/like', {
+        method: 'POST',
+        data: obj,
+        headers: new Headers()
+      });
+      console.log(getData);
+      if(getData.data[0]) {
+        this.setState({like_exist: true});
+      }
+    }
   }
 
   render() {

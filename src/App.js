@@ -22,6 +22,7 @@ class App extends Component {
       list_all_page: [],
       list_search: "",
       category: "",
+      user_id: "",
 
     }
   }
@@ -32,7 +33,8 @@ class App extends Component {
     if(sessionStorage.login && sessionStorage.IP) {
       this.setState({login: JSON.parse(sessionStorage.login).id,
                     admin: JSON.parse(sessionStorage.login).admin,
-                    user_ip: JSON.parse(sessionStorage.IP)
+                    user_ip: JSON.parse(sessionStorage.IP),
+                    user_id: JSON.parse(sessionStorage.login).user_id,
       });
     }
     this._getIP();
@@ -48,7 +50,8 @@ class App extends Component {
     sessionStorage.setItem('IP', JSON.stringify(data.ip));
     this.setState({login: JSON.parse(sessionStorage.login).id,
                   admin: JSON.stringify(data.suc).admin,
-                  user_ip: JSON.parse(sessionStorage.IP)
+                  user_ip: JSON.parse(sessionStorage.IP),
+                  user_id: JSON.parse(sessionStorage.login).user_id,
     });
     
     return window.location.reload();
@@ -133,7 +136,7 @@ class App extends Component {
   }
 
   render() {
-    const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search} = this.state;
+    const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search, user_id} = this.state;
     const {_login, _logout, _toggleModal, _changePage, _changeCategory} = this;
 
     return(
@@ -147,20 +150,22 @@ class App extends Component {
                 ip={ip} 
                 login_modal={login_modal} 
                 _toggleModal={_toggleModal}
-                _changeCategory = {_changeCategory} />
+                _changeCategory={_changeCategory} />
         </div>
 
         <div>
           <Main admin={admin} 
-          user_ip={user_ip} 
+          user_ip={user_ip}
+          user_id={user_id} 
           login={login} 
           ip={ip}
           list_data={list_data}
-          list_all_page = {list_all_page} 
-          list_search = {list_search}
-          list_page = {list_page}
-          _changePage = {_changePage}
-          _changeCategory = {_changeCategory} />
+          list_all_page={list_all_page} 
+          list_search={list_search}
+          list_page={list_page}
+          _toggleModal={_toggleModal}
+          _changePage={_changePage}
+          _changeCategory={_changeCategory} />
         </div>
       </div>
 

@@ -13,9 +13,11 @@ router.post('/get/board_data', controller.get.board_data);
 router.get('/get/category', controller.get.category);
 router.post('/update/view_cnt', controller.update.view_cnt);
 router.post('/update/password', controller.update.password);
+router.post('/update/like', controller.update.like);
 router.post('/delete/category', controller.delete.category);
 router.post('/modify/category', controller.modify.category);
 router.post('/search/id', controller.search.id);
 router.post('/search/pw', controller.search.pw);
+router.post('/check/like', controller.check.like);
 
 module.exports = router; 
