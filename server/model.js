@@ -212,7 +212,7 @@ module.exports = {
       .catch(err => {
         throw err;
       })
-    }
+    },
   },
 
   update: {
@@ -240,7 +240,32 @@ module.exports = {
       .catch(err => {
         throw err;
       });
-    }
+    },
+
+    like: (body, callback) => {
+
+      if(body.type === 'add') {
+        Board.update({likes: sequelize.literal('likes + 1')}, {
+          where: {board_id: body.board_id}
+        })
+        .then(() => {
+          Like.create({
+            board_id: body.board_id,
+            user_id: body.user_id
+          })
+          .then(() => {
+            callback(true);
+          })
+          .catch(err => {
+            throw err;
+          })
+        })
+        .catch(err => {
+          throw err;
+        });
+      }
+      
+    },
   },
 
   delete: {
@@ -305,4 +330,21 @@ module.exports = {
       });
     },
   },
+
+  check: {
+    like: (body, callback) => {
+      Like.findAll({
+        where: {
+          board_id: body.board_id,
+          user_id: body.user_id
+        }
+      })
+      .then(result => {
+        callback(result);
+      })
+      .catch(err => {
+        throw err;
+      });
+    }
+  }
 }
