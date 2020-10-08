@@ -166,6 +166,7 @@ module.exports = {
         });
       }    
     },
+
     password: (req, res) => {
       const body = req.body;
       const hash_pw = hashing.enc(body.user_id, body.change_password, salt);
@@ -173,7 +174,23 @@ module.exports = {
       model.update.password(body, hash_pw, result => {
         res.send(result);
       })
-    }
+    },
+
+    like: (req, res) => {
+      const body = req.body;
+
+      model.check.like(body, data => {
+        if(data.length === 0) {
+          model.update.like(body, result => {
+            res.send(result);
+          });
+        } else {
+          res.send(false);
+        }
+      })
+      
+    },
+
   },
 
   delete: {
@@ -250,4 +267,14 @@ module.exports = {
       });
     }, 
   },
+
+  check: {
+    like: (req, res) => {
+      const body = req.body;
+
+      model.check.like(body, result => {
+        res.send(result);
+      })
+    }
+  }
 } 
