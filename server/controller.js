@@ -149,7 +149,7 @@ module.exports = {
       const expires = new Date();
       expires.setDate(expires.getDate() + 1);
       console.log(expires)
-      const cookie_name = `board_${body.id}`;
+      const cookie_name = `board_${body.id}_user_${body.user_id}`;
       const exist_cookie = req.cookies[cookie_name];
       console.log(exist_cookie)
 
@@ -185,12 +185,16 @@ module.exports = {
             res.send(result);
           });
         } else {
-          res.send(false);
+          if(body.type === 'remove') {
+            model.update.like(body, result => {
+              res.send(result);
+            });
+          } else {
+            res.send(false);
+          }
         }
-      })
-      
+      });
     },
-
   },
 
   delete: {

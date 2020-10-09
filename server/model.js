@@ -263,6 +263,27 @@ module.exports = {
         .catch(err => {
           throw err;
         });
+      } else {
+        Board.update({likes: sequelize.literal('likes - 1')}, {
+          where: {board_id: body.board_id}
+        })
+        .then(() => {
+          Like.destroy({
+            where: {
+              board_id: body.board_id,
+              user_id: body.user_id
+            }
+          })
+          .then(() => {
+            callback(true);
+          })
+          .catch(err => {
+            throw err;
+          })
+        })
+        .catch(err => {
+          throw err;
+        })
       }
       
     },

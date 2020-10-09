@@ -18,9 +18,10 @@ class view extends Component {
 
   componentDidMount() {
     const board_id = this.props.match.params.data;
+    this._getLikeInfo();
     this._getData(board_id);
     this._addViewCnt(board_id);
-    this._getLikeInfo();
+  
   }
 
   _getData = async board_id => {
@@ -35,14 +36,15 @@ class view extends Component {
     
     const _date = `${getData.data.data[0].date.slice(0,10)} ${getData.data.data[0].date.slice(11,16)}`;
     
-    return this.setState({data: getData.data, date: _date});
+    return this.setState({data: getData.data, date: _date, like_num: getData.data.data[0].likes});
   }  
 
   _addViewCnt = async board_id => {
+    const {user_id} = this.props;
     const addView = await axios('/update/view_cnt', {
       method: 'POST',
       headers: new Headers(),
-      data: {id: board_id}
+      data: {id: board_id, user_id: user_id}
     });
   }
 
@@ -61,13 +63,27 @@ class view extends Component {
       data: obj,
       headers: new Headers()
     });
-
+    
+        
     if(!res.data) {
-      return alert('This post has been already liked by you.');
+      if(window.confirm('Would you like to cancel Like?')) {
+        const cancel = {type: 'remove', user_id: user_id, board_id: board_id}
+        
+        await axios('/update/like', {
+          method: 'POST',
+          data: cancel,
+          headers: new Headers()
+        });
+
+        this.setState({like_exist: false});
+      }
+      alert('Like has been cancelled');
     } else {
       this.setState({like_exist: true});
-      return alert(`You have clicked 'the like button' on this post.`);
+      
+      alert(`You have expressed Like on this post.`);
     }
+    return this._getData(board_id);
   }
 
   _getLikeInfo = async () => {
@@ -92,7 +108,7 @@ class view extends Component {
 
   render() {
 
-    const {data, date, none_like} = this.state;
+    const {data, date, none_like, like, like_exist, like_num} = this.state;
     return (
         <div className='Write'>
             {data.data ? 
@@ -110,8 +126,8 @@ class view extends Component {
               <div className='other_div'>
                 <div>{/*left */}</div>
                 <div className='Like'>
-                  <img src={none_like} onClick={() => this._toggleLike()}/>
-                  <h5>Like</h5>
+                  <img src={!like_exist ? none_like : like} onClick={() => this._toggleLike()}/>
+                  <h5>Like {like_num}</h5>
                 </div>
                 <div>{/*right*/}</div>
 
