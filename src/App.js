@@ -3,6 +3,7 @@ import "./App.css";
 import axios from 'axios';
 import { Head } from './inc';
 import { Main } from './page';
+import { Footer } from './foot';
 import queryString from 'query-string'
 
 
@@ -18,7 +19,7 @@ class App extends Component {
       login_modal: false,
       list_data: [],
       list_page: 1,
-      list_limit: 10,
+      list_limit: 13,
       list_all_page: [],
       list_search: "",
       category: "",
@@ -166,6 +167,10 @@ class App extends Component {
           _toggleModal={_toggleModal}
           _changePage={_changePage}
           _changeCategory={_changeCategory} />
+        </div>
+
+        <div>
+          <Footer/>
         </div>
       </div>
 

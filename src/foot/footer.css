@@ -1,0 +1,5 @@
+.footer_grid {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  border-top: solid 1px #ababab;
+}

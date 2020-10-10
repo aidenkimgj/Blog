@@ -1,6 +1,7 @@
 .Mains {
   display: grid;
   grid-template-columns: 19% 62% 19%;
+  height: 680px;
 }
 
 #Mains-left {
@@ -404,8 +405,7 @@ input[name=change_password_submit] {
   margin: 50px 40% 0px 40%;
 }
 
-.Like img {
-  
+.Like img {  
   width: 30px;
   cursor: pointer;
 }

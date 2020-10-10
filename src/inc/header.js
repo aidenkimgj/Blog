@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import '../App.css';
-import { Login, SignUp} from './index';
+import { Login, SignUp } from './index';
 
 
 class header extends Component {
