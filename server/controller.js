@@ -37,7 +37,7 @@ const send_Mail = mailOption => {
     }
   });
 }
-
+console.log("컨트롤러 불림");
 module.exports = {
   needs: () => upload,
   api: {
@@ -147,11 +147,12 @@ module.exports = {
       const body = req.body;
             
       const expires = new Date();
+      
       expires.setDate(expires.getDate() + 1);
-      console.log(expires)
+      
       const cookie_name = `board_${body.id}_user_${body.user_id}`;
       const exist_cookie = req.cookies[cookie_name];
-      console.log(exist_cookie)
+      
 
     
       if(!exist_cookie) {

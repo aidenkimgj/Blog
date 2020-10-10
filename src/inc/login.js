@@ -12,6 +12,7 @@ class login extends Component {
       password: "",
       search_un_modal: false,
       search_pw_modal: false,
+      close: 'https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-x-mark-8.png&r=0&g=0&b=0',
     }
   }
 
@@ -80,15 +81,18 @@ class login extends Component {
   }
 
   render() {
+    const {close} = this.state;
+
     return (
         <div>
           <Modal  visible={this.props.login_modal} 
                   width="400" 
-                  height="360" 
+                  height="380" 
                   effect="fadeInDown" 
                   onClickAway={() => this.props._toggleModal(false)}>
             <div>
-              <h4 className='acenter login_tit'> Login </h4>
+              <h4 className='acenter login_tit'>Login</h4>
+              <img src={close} id='login_close' onClick={() => this.props._toggleModal(false)}/>
               <form>
                 <div className='login_div'>
                   <div className = 'login_input_div'>
@@ -102,15 +106,15 @@ class login extends Component {
                   </div>
 
                   <div className='submit_div'>
-                    <div> <input type='button' value='Login' onClick={() => this._selectUserData()}/></div>
-                    <div> <input type='button' value='Cancel' onClick={() => this.props._toggleModal(false)}/></div>
+                    {/* <div> <input type='button' value='Login' onClick={() => this._selectUserData()}/></div> */}
+                    <b id='login_button' onClick={() => this._selectUserData()}>Login</b>
                   </div>
                 </div>
               </form>
 
               <div className='search_user_info_div'>
-                <div><b className='forget_id' onClick={() => this._openSearchModal('id')}>Forget Username?</b></div>
-                <div><b onClick={() => this._openSearchModal('pw')}>Forget password?</b></div>
+                <div><b className='forget_id' onClick={() => this._openSearchModal('id')}>Forgot Username?</b></div>
+                <div><b onClick={() => this._openSearchModal('pw')}>Forgot Password?</b></div>
               </div>
             </div>
           </Modal>  

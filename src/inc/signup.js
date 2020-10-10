@@ -12,6 +12,7 @@ class signup extends Component {
       password: "",
       email: "",
       passwordCheck: "",
+      close: 'https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-x-mark-8.png&r=0&g=0&b=0',
     }
   }
 
@@ -84,6 +85,7 @@ class signup extends Component {
 
   render() {
     
+    const {close} = this.state;
     return (
         
       <div>
@@ -94,6 +96,7 @@ class signup extends Component {
                         onClickAway={() => this._closeModal()}>
           <div>
             <h4 className='acenter login_tit'>Sign Up</h4>
+            <img src={close} id='login_close' onClick={() => this._closeModal()}/>
             <form>
               <div className='login_div'>
                 <div className = 'login_input_div'>
@@ -117,8 +120,8 @@ class signup extends Component {
                 </div>
 
                 <div className='submit_div'>
-                  <div> <input type='button' value='Sign Up' onClick={() => this._selectNewUserData()}/></div>
-                  <div> <input type='button' value='Cancel' onClick={() => this._closeModal()}/></div>
+                  <b id='signup_button' onClick={() => this._selectNewUserData()}>Sign Up</b> 
+                  
                 </div>
               </div>
             </form>

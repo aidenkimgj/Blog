@@ -23,6 +23,13 @@
   padding-bottom: 20px
 }
 
+#login_close {
+  width: 15px;
+  position: absolute;
+  margin: -73px 0px 0px 177px;
+  cursor: pointer;
+}
+
 .modal_tools {
   margin-top: -100px
 }
@@ -41,6 +48,7 @@
   width: 70%;
   padding: 4px;
   margin-top: -10px;
+  margin-bottom: 5px;
   
 }
 
@@ -62,10 +70,30 @@
   /* padding-left: 20px; */
 }
 
+#login_button {
+  position: relative;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 25px;
+  font-family: 'Sansita Swashed';
+  cursor: pointer;
+  color: rgb(173, 149, 115);
+}
+
+#signup_button {
+  position: relative;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 25px;
+  font-family: 'Sansita Swashed';
+  cursor: pointer;
+  color: rgb(173, 149, 115);
+}
+
 .submit_div {
-  display: grid;
-  grid-template-columns: 50% auto;
-  margin-top: 12%;
+  margin-top: 7%;
+  
 }
 
 .submit_div div {

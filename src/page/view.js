@@ -76,8 +76,9 @@ class view extends Component {
         });
 
         this.setState({like_exist: false});
+        alert('Like has been cancelled');
       }
-      alert('Like has been cancelled');
+      
     } else {
       this.setState({like_exist: true});
       

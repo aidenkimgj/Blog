@@ -235,7 +235,7 @@
 }
 
 .search_user_info_div {
-  margin-top: 20px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 50% 50%;
   border-top: solid 1px #ababab;
@@ -243,7 +243,7 @@
 
 .search_user_info_div div {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .search_user_info_div div b {
@@ -271,7 +271,7 @@
 }
 
 .back_and_close div img { 
-  width: 20px; cursor: pointer; 
+  width: 15px; cursor: pointer; 
 }
 
 .Search_id_div div {
