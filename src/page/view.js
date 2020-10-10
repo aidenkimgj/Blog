@@ -132,7 +132,9 @@ class view extends Component {
                 </div>
                 <div className='Like'>
                   <img src={!like_exist ? none_like : like} onClick={() => this._toggleLike()}/>
-                  <h5>Like {like_num}</h5>
+                  { like_num < 2 ? 
+                  <h5> {like_num} Like </h5> : 
+                  <h5> {like_num} Likes </h5> }
                 </div>
                 <div className='view_pre_next_div view_next'>
                   <img src={next}/>
