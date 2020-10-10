@@ -13,7 +13,7 @@
 
 .Write {
   padding: 20px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .Write #Title {
@@ -400,16 +400,40 @@ input[name=change_password_submit] {
 }
 
 .Like {
-  margin: 50px 70px 0px 30%;
+  text-align: center;
+  margin: 50px 40% 0px 40%;
 }
 
 .Like img {
-  margin-left: 37px;
+  
   width: 30px;
   cursor: pointer;
 }
 
 .Like h5 {
   margin-top: 10px;
-  margin-left: 33px;
+  
 }
+
+.view_pre_next_div {
+  margin-top: 50px;
+}
+
+.other_div .view_next {
+  margin-left: 50%;
+  text-align: center;
+}
+
+.other_div .view_pre {
+  margin-right: 50%;
+  text-align: center;
+}
+
+.view_pre_next_div img { 
+  width: 45px; 
+  cursor: pointer; 
+}
+
+/* .view_pre img {
+  margin-left: 20%;
+} */

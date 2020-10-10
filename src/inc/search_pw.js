@@ -147,7 +147,7 @@ class search_pw extends Component {
                   </span>
 
                   <div>
-                    <h5>Password</h5>
+                    <h5>New Password</h5>
                     <input type='password' name='change_password' maxLength='20' placeholder='Enter Password'/>
                   </div>
 

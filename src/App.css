@@ -1,7 +1,7 @@
 
 .header_grid {
   display: grid;
-  grid-template-columns: 33% 33% auto;
+  grid-template-columns: 33.3333333% 33.3333333% auto;
   border-bottom: solid 1px #ababab;
 }
 

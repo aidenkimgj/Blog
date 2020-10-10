@@ -23,7 +23,7 @@ class App extends Component {
       list_search: "",
       category: "",
       user_id: "",
-
+      
     }
   }
 
@@ -58,7 +58,7 @@ class App extends Component {
   }
 
   _logout = () => {
-    this.setState({login: false, admin: false, user_ip: ""});
+    this.setState({login: false, user_id: "",  admin: false, user_ip: ""});
     sessionStorage.removeItem('login');
     sessionStorage.removeItem('IP');
 

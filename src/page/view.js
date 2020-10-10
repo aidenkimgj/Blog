@@ -12,7 +12,9 @@ class view extends Component {
       none_like: "https://image.flaticon.com/icons/png/512/25/25297.png",
       like: "https://image.flaticon.com/icons/png/512/25/25423.png",
       like_exist: false,
-      like_num: 0
+      like_num: 0,
+      pre: 'https://image.flaticon.com/icons/png/512/122/122637.png',
+      next: 'https://image.flaticon.com/icons/png/512/122/122636.png',
     }
   }
 
@@ -109,7 +111,7 @@ class view extends Component {
 
   render() {
 
-    const {data, date, none_like, like, like_exist, like_num} = this.state;
+    const {data, date, none_like, like, like_exist, like_num, pre, next} = this.state;
     return (
         <div className='Write'>
             {data.data ? 
@@ -125,12 +127,16 @@ class view extends Component {
               <div id='contents_div' dangerouslySetInnerHTML={{__html: data.data[0].contents}}></div> 
               
               <div className='other_div'>
-                <div>{/*left */}</div>
+                <div className='view_pre_next_div view_pre'>
+                  <img src={pre}/>
+                </div>
                 <div className='Like'>
                   <img src={!like_exist ? none_like : like} onClick={() => this._toggleLike()}/>
                   <h5>Like {like_num}</h5>
                 </div>
-                <div>{/*right*/}</div>
+                <div className='view_pre_next_div view_next'>
+                  <img src={next}/>
+                </div>
 
               </div>
             </div>
