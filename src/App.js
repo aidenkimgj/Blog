@@ -19,7 +19,7 @@ class App extends Component {
       login_modal: false,
       list_data: [],
       list_page: 1,
-      list_limit: 13,
+      list_limit: 12,
       list_all_page: [],
       list_search: "",
       category: "",
@@ -116,22 +116,25 @@ class App extends Component {
             search: search, 
             category: _category}
     });
-    console.log(total_list);
+    console.log(total_list.data.length);
     let page_arr = [];
     
     for(let i = 1; i <= Math.ceil(total_cnt.data.cnt / list_limit); i++) {
       page_arr.push(i);
     }
+  
+      this.setState({list_data: total_list.data, 
+        list_all_page : page_arr, 
+        list_search: search});
+        this.props.location.search = {search: ""};
     
-    this.setState({list_data: total_list.data, 
-                  list_all_page : page_arr, 
-                  list_search: search});
+    
     
     sessionStorage.removeItem('page');
   }
 
   _changeCategory = (target) => {
-    this.setState({category: target});
+    this.setState({category: target, list_search: ""});
     sessionStorage.setItem('category', target);
     return this._getListData();
   }
