@@ -5,7 +5,7 @@ class footer extends Component {
   render() {
     return (
       <div className='footer_grid'>
-
+        <p>Hello</p>
       </div>
     );
   }

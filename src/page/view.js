@@ -17,21 +17,25 @@ class view extends Component {
       next: 'https://image.flaticon.com/icons/png/512/122/122636.png',
     }
   }
-
+  
   componentDidMount() {
     const board_id = this.props.match.params.data;
     const {pre_view, next_view, _getPreAndNextData} = this.props;
     
-    this._getLikeInfo();
-    this._getData(board_id);
-    this._addViewCnt(board_id);
-    
-    if(pre_view === "" || next_view === "") {
-      console.log('들어오나?')
-      _getPreAndNextData(board_id);
-    }
-
+      this._getLikeInfo();
+      if(!this.props.data) {
+        this._getData(board_id);
+      }
+      
+      this._addViewCnt(board_id);
+      
+      if(pre_view.length === 0 || next_view.lenth === 0) {
+        console.log('들어오나?')
+        _getPreAndNextData(board_id);
+      }
   }
+  
+
 
   _getData = async board_id => {
     
@@ -116,11 +120,31 @@ class view extends Component {
     }
   }
 
+  _changeViewPage = url => {
+    if(url === 'null_pre') {
+      return alert('This article is the first');
+    } else if(url === 'null_next') {
+      return alert('This article is the last');
+    } 
+    return window.location.href = url;
+  }
+
   render() {
 
     const {data, date, none_like, like, like_exist, like_num, pre, next} = this.state;
     const {pre_view, next_view} = this.props;
     console.log(pre_view)
+    let next_url = "";
+    let pre_url = "";
+
+    if(next_view.length) {
+      next_url = `/view/${next_view[0].board_id}`; 
+    }
+
+    if(pre_view.length) {
+      pre_url = `/view/${pre_view[0].board_id}`;
+    }
+
     return (
         <div className='Write'>
             {data.data ? 
@@ -137,9 +161,9 @@ class view extends Component {
               
               <div className='other_div'>
                 <div className='view_pre_next_div view_pre'>
-                  {pre_view.length > 0 ? <img src={pre}/> : null}
+                  {pre_view.length > 0 ? <img src={pre} onClick={pre_url ? () => this._changeViewPage(pre_url) : () => this._changeViewPage('null_pre') }/> : null}
                   <div>
-                    {pre_view.length > 0 ? pre_view[0].title : null}
+                    {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : null}
                   </div>
                 </div>
                 <div className='Like'>
@@ -149,9 +173,9 @@ class view extends Component {
                   <h5> {like_num} Likes </h5> }
                 </div>
                 <div className='view_pre_next_div view_next'>
-                  <img src={next}/>
+                  {next_view.length > 0 ?<img src={next} onClick={next_url ? () => this._changeViewPage(next_url) : () => this._changeViewPage('null_next') }/> : null}
                   <div>
-                    {next_view.length > 0 ? next_view[0].title : <p>This article is the last</p>}
+                    {next_view.length > 0 ? <p><b>{next_view[0].title}</b></p> : null}
                   </div>
                 </div>
 

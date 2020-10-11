@@ -25,8 +25,8 @@ class App extends Component {
       category: "",
       user_id: "",
       edit: false,
-      pre_view: "",
-      next_view: "",
+      pre_view: [],
+      next_view: [],
     }
   }
 
