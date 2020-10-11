@@ -394,7 +394,7 @@ input[name=change_password_submit] {
 }
 
 .other_div {
-  margin-top: 300px;
+  margin-top: 410px;
   border-top: solid 1px #ababab;
   display: grid;
   grid-template-columns: 30% 40% 30%;

@@ -24,6 +24,7 @@ class App extends Component {
       list_search: "",
       category: "",
       user_id: "",
+      edit: false,
       
     }
   }
@@ -86,7 +87,7 @@ class App extends Component {
   }
 
   _getListData = async () => {
-        
+    this._changeEdit('close');
     const {list_limit} = this.state;
     const list_pages = this._setPage();
     
@@ -127,21 +128,29 @@ class App extends Component {
         list_all_page : page_arr, 
         list_search: search});
         this.props.location.search = {search: ""};
-    
-    
-    
+            
     sessionStorage.removeItem('page');
   }
 
   _changeCategory = (target) => {
-    this.setState({category: target, list_search: ""});
+    this.setState({category: target});
     sessionStorage.setItem('category', target);
     return this._getListData();
   }
 
+  _changeEdit = (el) => {
+    
+    if(el ==='close') {
+      this.setState({edit: false});
+    } else {
+      this.setState({edit: true});
+    }
+    
+  }
+
   render() {
-    const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search, user_id} = this.state;
-    const {_login, _logout, _toggleModal, _changePage, _changeCategory} = this;
+    const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search, user_id, edit} = this.state;
+    const {_login, _logout, _toggleModal, _changePage, _changeCategory, _changeEdit} = this;
 
     return(
       <div className='App'>
@@ -159,17 +168,19 @@ class App extends Component {
 
         <div>
           <Main admin={admin} 
-          user_ip={user_ip}
-          user_id={user_id} 
-          login={login} 
-          ip={ip}
-          list_data={list_data}
-          list_all_page={list_all_page} 
-          list_search={list_search}
-          list_page={list_page}
-          _toggleModal={_toggleModal}
-          _changePage={_changePage}
-          _changeCategory={_changeCategory} />
+                user_ip={user_ip}
+                user_id={user_id} 
+                login={login} 
+                edit={edit}
+                ip={ip}
+                list_data={list_data}
+                list_all_page={list_all_page} 
+                list_search={list_search}
+                list_page={list_page}
+                _changeEdit={_changeEdit}
+                _toggleModal={_toggleModal}
+                _changePage={_changePage}
+                _changeCategory={_changeCategory} />
         </div>
 
         <div>

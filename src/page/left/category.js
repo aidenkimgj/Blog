@@ -8,7 +8,6 @@ class category extends Component {
     super(props)
     this.state = {
       category: [],
-      edit: false,
     }
   }
 
@@ -82,8 +81,8 @@ class category extends Component {
   }
 
   render() {
-    const {category, edit} = this.state;
-    const {_changeCategory, login, admin, user_ip, ip} = this.props;
+    const {category} = this.state;
+    const {_changeCategory, _changeEdit, login, admin, user_ip, ip, edit} = this.props;
         let pre_cat = '';
 
     if(sessionStorage.getItem('category')) {
@@ -94,7 +93,7 @@ class category extends Component {
       <div className='Category'>
         <ul>
           <li><Link className={pre_cat === '' ? 'pre_cat' : null} to='/' onClick={() =>_changeCategory('')}>View All</Link>
-          {login && admin === 'Y' && user_ip === ip ? !edit ? <input type='button' value='Edit' className='Edit' onClick={() => this.setState({edit: !edit})}/> : 
+          {login && admin === 'Y' && user_ip === ip ? !edit ? <input type='button' value='Edit' className='Edit' onClick={() => _changeEdit()}/> : 
                             <input type='button' value='Add' className='Edit' onClick={() => this._addCategory()}/> : null}<hr/></li>
           {category.length > 0 ? 
             category.map( (el, key) => {
