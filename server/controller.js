@@ -139,6 +139,14 @@ module.exports = {
       model.get.category(data => {
         res.send(data);
       });
+    },
+
+    pre_and_next: (req, res) => {
+      const body = req.body;
+
+      model.get.pre_and_next(body, data => {
+        res.send(data);
+      });
     }
   },
 

@@ -213,6 +213,43 @@ module.exports = {
         throw err;
       })
     },
+
+    pre_and_next: (body, callback) => {
+      let result = {};
+
+      Board.findAll({
+        where: {
+          board_id: {
+            [Op.gt]: body.board_id
+          }
+        },
+        limit: 1
+      })
+      .then(next => {
+        result['next'] = next;
+
+        Board.findAll({
+          where: {
+            board_id: {
+              [Op.lt]: body.board_id
+            }
+          },
+          limit: 1,
+          order: sequelize.literal('board_id DESC')
+      })
+      .then(pre => {
+        result['pre'] = pre;
+        callback(result);
+      })
+      .catch(err => {
+        throw err;
+      });
+    })
+    .catch(err => {
+      throw err;
+    })
+
+    }
   },
 
   update: {

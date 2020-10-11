@@ -20,10 +20,17 @@ class view extends Component {
 
   componentDidMount() {
     const board_id = this.props.match.params.data;
+    const {pre_view, next_view, _getPreAndNextData} = this.props;
+    
     this._getLikeInfo();
     this._getData(board_id);
     this._addViewCnt(board_id);
-  
+    
+    if(pre_view === "" || next_view === "") {
+      console.log('들어오나?')
+      _getPreAndNextData(board_id);
+    }
+
   }
 
   _getData = async board_id => {
@@ -112,6 +119,8 @@ class view extends Component {
   render() {
 
     const {data, date, none_like, like, like_exist, like_num, pre, next} = this.state;
+    const {pre_view, next_view} = this.props;
+    console.log(pre_view)
     return (
         <div className='Write'>
             {data.data ? 
@@ -128,7 +137,10 @@ class view extends Component {
               
               <div className='other_div'>
                 <div className='view_pre_next_div view_pre'>
-                  <img src={pre}/>
+                  {pre_view.length > 0 ? <img src={pre}/> : null}
+                  <div>
+                    {pre_view.length > 0 ? pre_view[0].title : null}
+                  </div>
                 </div>
                 <div className='Like'>
                   <img src={!like_exist ? none_like : like} onClick={() => this._toggleLike()}/>
@@ -138,6 +150,9 @@ class view extends Component {
                 </div>
                 <div className='view_pre_next_div view_next'>
                   <img src={next}/>
+                  <div>
+                    {next_view.length > 0 ? next_view[0].title : <p>This article is the last</p>}
+                  </div>
                 </div>
 
               </div>

@@ -394,10 +394,10 @@ input[name=change_password_submit] {
 }
 
 .other_div {
-  margin-top: 410px;
+  margin-top: 390px;
   border-top: solid 1px #ababab;
   display: grid;
-  grid-template-columns: 30% 40% 30%;
+  grid-template-columns: 37% 26% 37%;
 }
 
 .Like {
@@ -406,7 +406,7 @@ input[name=change_password_submit] {
 }
 
 .Like img {  
-  width: 30px;
+  width: 25px;
   cursor: pointer;
 }
 
@@ -430,10 +430,8 @@ input[name=change_password_submit] {
 }
 
 .view_pre_next_div img { 
-  width: 45px; 
+  width: 25px; 
   cursor: pointer; 
 }
 
-/* .view_pre img {
-  margin-left: 20%;
-} */
+

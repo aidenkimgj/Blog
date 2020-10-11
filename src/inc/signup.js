@@ -90,10 +90,10 @@ class signup extends Component {
         
       <div>
         <Modal  visible = {this.state.visible} 
-                        width="400" 
-                        height="500" 
-                        effect="fadeInDown" 
-                        onClickAway={() => this._closeModal()}>
+                width="400" 
+                height="500" 
+                effect="fadeInDown" 
+                onClickAway={() => this._closeModal()}>
           <div>
             <h4 className='acenter login_tit'>Sign Up</h4>
             <img src={close} id='login_close' onClick={() => this._closeModal()}/>
