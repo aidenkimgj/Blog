@@ -25,8 +25,7 @@ class App extends Component {
       category: "",
       user_id: "",
       edit: false,
-      pre_view: [],
-      next_view: [],
+    
     }
   }
 
@@ -149,19 +148,11 @@ class App extends Component {
     
   }
 
-  _getPreAndNextData = async board_id => {
-    const res = await axios('/get/pre_and_next', {
-      method: 'POST',
-      data: {board_id: board_id},
-      headers: new Headers()
-    });
-    console.log(res)
-    this.setState({pre_view: res.data.pre, next_view: res.data.next});
-  }
+ 
 
   render() {
-    const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search, user_id, edit, pre_view, next_view} = this.state;
-    const {_login, _logout, _toggleModal, _changePage, _changeCategory, _changeEdit, _getPreAndNextData} = this;
+    const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search, user_id, edit} = this.state;
+    const {_login, _logout, _toggleModal, _changePage, _changeCategory, _changeEdit} = this;
 
     return(
       <div className='App'>
@@ -188,9 +179,6 @@ class App extends Component {
                 list_all_page={list_all_page} 
                 list_search={list_search}
                 list_page={list_page}
-                pre_view={pre_view}
-                next_view={next_view}
-                _getPreAndNextData={_getPreAndNextData}
                 _changeEdit={_changeEdit}
                 _toggleModal={_toggleModal}
                 _changePage={_changePage}

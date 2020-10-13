@@ -15,26 +15,37 @@ class view extends Component {
       like_num: 0,
       pre: 'https://image.flaticon.com/icons/png/512/122/122637.png',
       next: 'https://image.flaticon.com/icons/png/512/122/122636.png',
+      pre_view: [],
+      next_view: [],
     }
   }
   
   componentDidMount() {
-    const board_id = this.props.match.params.data;
-    const {pre_view, next_view, _getPreAndNextData} = this.props;
     
+    const board_id = this.props.match.params.data;
+    const {pre_view, next_view} = this.state;
+    console.log('뷰디드 어마운트',board_id);
       this._getLikeInfo();
-      if(!this.props.data) {
-        this._getData(board_id);
+      if(pre_view.length === 0 || next_view.length === 0) {
+        console.log('들어오나?')
+        this._getPreAndNextData(board_id);
       }
-      
+      this._getData(board_id);
+        
       this._addViewCnt(board_id);
       
-      if(pre_view.length === 0 || next_view.lenth === 0) {
-        console.log('들어오나?')
-        _getPreAndNextData(board_id);
-      }
+    
   }
   
+  _getPreAndNextData = async board_id => {
+    const res = await axios('/get/pre_and_next', {
+      method: 'POST',
+      data: {board_id: board_id},
+      headers: new Headers()
+    });
+    console.log(res)
+    this.setState({pre_view: res.data.pre, next_view: res.data.next});
+  }
 
 
   _getData = async board_id => {
@@ -49,7 +60,7 @@ class view extends Component {
     
     const _date = `${getData.data.data[0].date.slice(0,10)} ${getData.data.data[0].date.slice(11,16)}`;
     
-    return this.setState({data: getData.data, date: _date, like_num: getData.data.data[0].likes});
+    this.setState({data: getData.data, date: _date, like_num: getData.data.data[0].likes});
   }  
 
   _addViewCnt = async board_id => {
@@ -132,7 +143,7 @@ class view extends Component {
   render() {
 
     const {data, date, none_like, like, like_exist, like_num, pre, next} = this.state;
-    const {pre_view, next_view} = this.props;
+    const {pre_view, next_view} = this.state;
     console.log(pre_view)
     let next_url = "";
     let pre_url = "";
@@ -161,9 +172,9 @@ class view extends Component {
               
               <div className='other_div'>
                 <div className='view_pre_next_div view_pre'>
-                  {pre_view.length > 0 ? <img src={pre} onClick={pre_url ? () => this._changeViewPage(pre_url) : () => this._changeViewPage('null_pre') }/> : null}
+                  {pre_view.length > 0 ? <img src={pre} title='previous article' onClick={pre_url ? () => this._changeViewPage(pre_url) : () => this._changeViewPage('null_pre') }/> : null}
                   <div>
-                    {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : null}
+                    {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : <b><p>This article is the first</p></b>}
                   </div>
                 </div>
                 <div className='Like'>
@@ -173,9 +184,9 @@ class view extends Component {
                   <h5> {like_num} Likes </h5> }
                 </div>
                 <div className='view_pre_next_div view_next'>
-                  {next_view.length > 0 ?<img src={next} onClick={next_url ? () => this._changeViewPage(next_url) : () => this._changeViewPage('null_next') }/> : null}
+                  {next_view.length > 0 ?<img src={next} title='next article' onClick={next_url ? () => this._changeViewPage(next_url) : () => this._changeViewPage('null_next') }/> : null}
                   <div>
-                    {next_view.length > 0 ? <p><b>{next_view[0].title}</b></p> : null}
+                    {next_view.length > 0 ? <p><b>{next_view[0].title}</b></p> : <b><p>This article is the last</p></b>}
                   </div>
                 </div>
 

@@ -35,7 +35,7 @@ class main extends Component {
   }
 
   render() {
-    const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page,_toggleModal, _changePage, _changeCategory, _changeEdit, pre_view, next_view, _getPreAndNextData} = this.props;
+    const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page,_toggleModal, _changePage, _changeCategory, _changeEdit} = this.props;
     const {_getContents, _getTtitles} = this;
     const {contents, title} = this.state;
 
@@ -66,9 +66,6 @@ class main extends Component {
                   component={this._withProps(View, {
                     login: login,
                     user_id: user_id,
-                    pre_view: pre_view,
-                    next_view: next_view,
-                    _getPreAndNextData: _getPreAndNextData,
                     _toggleModal: _toggleModal,
           })} />
         </div>
