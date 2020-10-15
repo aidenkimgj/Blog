@@ -25,12 +25,14 @@ class App extends Component {
       category: "",
       user_id: "",
       edit: false,
-    
+      
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    
     this._getListData();
+    
 
     if(sessionStorage.login && sessionStorage.IP) {
       this.setState({login: JSON.parse(sessionStorage.login).id,
@@ -132,9 +134,10 @@ class App extends Component {
     sessionStorage.removeItem('page');
   }
 
-  _changeCategory = (target) => {
-    this.setState({category: target});
-    sessionStorage.setItem('category', target);
+  _changeCategory = (target1, target2) => {
+    this.setState({category: target1});
+    sessionStorage.setItem('category', target1);
+    sessionStorage.setItem('category_name', target2);
     return this._getListData();
   }
 
@@ -148,7 +151,8 @@ class App extends Component {
     
   }
 
- 
+
+
 
   render() {
     const {login, admin, user_ip, ip, login_modal, list_data, list_all_page, list_page, list_search, user_id, edit} = this.state;

@@ -36,7 +36,7 @@ module.exports = {
         contents: body.contents,
         date: now_date,
         view_cnt: 0,
-        cat_id: 0,
+        cat_id: body.category,
         likes: 0,
       })
       .then(data => {
@@ -217,10 +217,24 @@ module.exports = {
     pre_and_next: (body, callback) => {
       let result = {};
 
+      let where_1 = body.category;
+      let where_2 = '';
+
+      if(!body.category) {
+        where_2 = 0;
+      } else if(body.category) {
+        where_2 = null;
+      }
       Board.findAll({
         where: {
           board_id: {
             [Op.gt]: body.board_id
+          },
+          cat_id: {
+            [Op.or]: {
+              [Op.eq]: where_1,
+              [Op.gt]: where_2
+            }
           }
         },
         limit: 1
@@ -232,6 +246,12 @@ module.exports = {
           where: {
             board_id: {
               [Op.lt]: body.board_id
+            },
+            cat_id: {
+              [Op.or]: {
+                [Op.eq]: where_1,
+                [Op.gt]: where_2
+              }
             }
           },
           limit: 1,

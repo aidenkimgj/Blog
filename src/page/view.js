@@ -20,14 +20,14 @@ class view extends Component {
     }
   }
   
-  componentDidMount() {
+  componentDidMount = () => {
     
     const board_id = this.props.match.params.data;
     const {pre_view, next_view} = this.state;
-    console.log('뷰디드 어마운트',board_id);
+    
       this._getLikeInfo();
       if(pre_view.length === 0 || next_view.length === 0) {
-        console.log('들어오나?')
+        
         this._getPreAndNextData(board_id);
       }
       this._getData(board_id);
@@ -38,9 +38,11 @@ class view extends Component {
   }
   
   _getPreAndNextData = async board_id => {
+    const category = sessionStorage.getItem('category');
+
     const res = await axios('/get/pre_and_next', {
       method: 'POST',
-      data: {board_id: board_id},
+      data: {board_id: board_id, category: category},
       headers: new Headers()
     });
     console.log(res)
@@ -141,7 +143,7 @@ class view extends Component {
   }
 
   render() {
-
+    const category = sessionStorage.getItem('category_name');
     const {data, date, none_like, like, like_exist, like_num, pre, next} = this.state;
     const {pre_view, next_view} = this.state;
     console.log(pre_view)
@@ -174,7 +176,7 @@ class view extends Component {
                 <div className='view_pre_next_div view_pre'>
                   {pre_view.length > 0 ? <img src={pre} title='previous article' onClick={pre_url ? () => this._changeViewPage(pre_url) : () => this._changeViewPage('null_pre') }/> : null}
                   <div>
-                    {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : <b><p>This article is the first</p></b>}
+            {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : <b><p>This article is the first in {category}</p></b>}
                   </div>
                 </div>
                 <div className='Like'>
@@ -186,7 +188,7 @@ class view extends Component {
                 <div className='view_pre_next_div view_next'>
                   {next_view.length > 0 ?<img src={next} title='next article' onClick={next_url ? () => this._changeViewPage(next_url) : () => this._changeViewPage('null_next') }/> : null}
                   <div>
-                    {next_view.length > 0 ? <p><b>{next_view[0].title}</b></p> : <b><p>This article is the last</p></b>}
+                    {next_view.length > 0 ? <p><b>{next_view[0].title}</b></p> : <b><p>This article is the last in {category}</p></b>}
                   </div>
                 </div>
 

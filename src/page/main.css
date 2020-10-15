@@ -434,4 +434,14 @@ input[name=change_password_submit] {
   cursor: pointer; 
 }
 
+.select_category_div {
+  text-align: center;
+  margin-top: 50px;
+  line-height: 0px;
+}
 
+.select_category_div select {
+  width: 50%;
+  padding: 3px;
+  margin-top: -5px;
+}

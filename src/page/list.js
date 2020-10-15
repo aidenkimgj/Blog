@@ -29,7 +29,7 @@ class list extends Component {
                 <div className='view'>{el.view_cnt}</div>
                                         
                 <div className='acenter'>{el.date.slice(0, 10)}</div>
-              </div>
+            </div>
 
           );
         }) : <div className='not_data acenter'>

@@ -92,14 +92,14 @@ class category extends Component {
     return (
       <div className='Category'>
         <ul>
-          <li><Link className={pre_cat === '' ? 'pre_cat' : null} to='/' onClick={() =>_changeCategory('')}>View All</Link>
+          <li><Link className={pre_cat === '' ? 'pre_cat' : null} to='/' onClick={() =>_changeCategory('', 'this blog')}>View All</Link>
           {login && admin === 'Y' && user_ip === ip ? !edit ? <input type='button' value='Edit' className='Edit' onClick={() => _changeEdit()}/> : 
                             <input type='button' value='Add' className='Edit' onClick={() => this._addCategory()}/> : null}<hr/></li>
           {category.length > 0 ? 
             category.map( (el, key) => {
               if(!edit) {
                 return(
-                  <li key={key}><Link className={pre_cat === el.id ? 'pre_cat' : null} to='/' onClick={() => _changeCategory(el.id)}>{el.name}</Link></li>
+                  <li key={key}><Link className={pre_cat === el.id ? 'pre_cat' : null} to='/' onClick={() => _changeCategory(el.id, el.name)}>{el.name}</Link></li>
                   )
               } else {
                 return(

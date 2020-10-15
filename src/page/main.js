@@ -35,7 +35,7 @@ class main extends Component {
   }
 
   render() {
-    const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page,_toggleModal, _changePage, _changeCategory, _changeEdit} = this.props;
+    const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page, select_category, _selectCategoryData, _toggleModal, _changePage, _changeCategory, _changeEdit, category_data} = this.props;
     const {_getContents, _getTtitles} = this;
     const {contents, title} = this.state;
 
@@ -45,7 +45,14 @@ class main extends Component {
       <div className='Mains'>
         
         <div id='Mains-left'>
-          <Route path='/' render={props => <Category _changeCategory={_changeCategory} _changeEdit={_changeEdit} login={login} admin={admin} user_ip={user_ip} ip={ip} edit={edit}/>} exact/>
+          <Route path='/' render={props => <Category 
+                                _changeCategory={_changeCategory} 
+                                _changeEdit={_changeEdit} 
+                                login={login} 
+                                admin={admin} 
+                                user_ip={user_ip} 
+                                ip={ip} 
+                                edit={edit}/>} exact/>
         </div>
 
         <div>
@@ -58,10 +65,13 @@ class main extends Component {
                   list_search: list_search,
                   list_page: list_page,
                   _changePage: _changePage})} exact /> 
-          <Route path='/write' component={this._withProps(Write, {_getTtitles: _getTtitles, _getContents: _getContents, title: title, contents: contents})} />
+          
+          <Route path='/write' component={this._withProps(Write, {
+                                _getTtitles: _getTtitles, 
+                                _getContents: _getContents, 
+                                title: title, 
+                                contents: contents})} />
 
-          
-          
           <Route path='/view/:data' 
                   component={this._withProps(View, {
                     login: login,
