@@ -34,7 +34,7 @@ class header extends Component {
           </div>
           
           <div className='acenter'>
-            <Link className='link_tit' to='/' onClick={() => _changeCategory('')}> 
+            <Link className='link_tit' to='/' onClick={() => _changeCategory('', 'this blog')}> 
               <h3> Aiden's Blog </h3> 
             </Link>
           </div>

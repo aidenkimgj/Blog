@@ -82,7 +82,13 @@
   
 }
 .list_link {
-  text-decoration-line: none;
+  text-decoration: none;
+  color: black;
+}
+
+.list_link:hover {
+  color: #c98989;
+  font-weight: bold;
 }
 
 .view {
@@ -158,7 +164,7 @@
 }
 
 .Category ul {
-  line-height: 40px;
+  line-height: 30px;
 }
 
 .Category ul li {
@@ -184,7 +190,7 @@
 
 .Edit {
   position: absolute;
-  margin: 10px 0px 0px 15px;
+  margin: 5px 0px 0px 15px;
   padding: 1px 7px 1px 7px;
   border-radius: 4px;
   color: #ababab;
@@ -445,3 +451,36 @@ input[name=change_password_submit] {
   padding: 3px;
   margin-top: -5px;
 }
+
+.ck-editor__editable {
+  min-height: 450px;
+}
+
+.write_option_div {
+  text-align: right;
+  margin-right: 2%;
+}
+
+.write_option_div input {
+  padding: 3px 7px 3px 7px;
+  border-radius: 5px;
+  border : solid 1px #ababab;
+  cursor: pointer;
+  background-color: white;
+}
+
+#del {
+  margin-left: 5px;
+}
+
+#view_list_button {
+  position: absolute;
+  width: 40px;
+  margin: -40px 0px 0px 54%;
+  padding: 3px 7px 3px 7px;
+  border-radius: 5px;
+  border : solid 1px #ababab;
+  cursor: pointer;
+  background-color: white;
+}
+

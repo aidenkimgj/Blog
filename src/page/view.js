@@ -144,9 +144,9 @@ class view extends Component {
 
   render() {
     const category = sessionStorage.getItem('category_name');
-    const {data, date, none_like, like, like_exist, like_num, pre, next} = this.state;
-    const {pre_view, next_view} = this.state;
-    console.log(pre_view)
+    const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view} = this.state;
+    const {admin} = this.props;
+    
     let next_url = "";
     let pre_url = "";
 
@@ -162,6 +162,12 @@ class view extends Component {
         <div className='Write'>
             {data.data ? 
             <div>
+              {admin === 'Y' ? 
+              <div className='write_option_div'>
+                <input type='button' value='Modify'/>
+                <input type='button' id='del' value='Delete'/>
+              </div> : null}
+              
               <div className='top_title'>
                 <input type='text' id='title_txt' name='title' defaultValue={data.data[0].title} readOnly />
 
@@ -173,28 +179,35 @@ class view extends Component {
               <div id='contents_div' dangerouslySetInnerHTML={{__html: data.data[0].contents}}></div> 
               
               <div className='other_div'>
+                <input type='button' value='List' id='view_list_button' onClick={() => window.location.href = '/'}/>
+
                 <div className='view_pre_next_div view_pre'>
                   {pre_view.length > 0 ? <img src={pre} title='previous article' onClick={pre_url ? () => this._changeViewPage(pre_url) : () => this._changeViewPage('null_pre') }/> : null}
+                  
                   <div>
-            {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : <b><p>This article is the first in {category}</p></b>}
+                    {pre_view.length > 0 ? <p><b>{pre_view[0].title}</b></p> : <b><p>This article is the first in {category}</p></b>}
                   </div>
+
                 </div>
+                
                 <div className='Like'>
                   <img src={!like_exist ? none_like : like} onClick={() => this._toggleLike()}/>
                   { like_num < 2 ? 
                   <h5> {like_num} Like </h5> : 
                   <h5> {like_num} Likes </h5> }
                 </div>
+                
                 <div className='view_pre_next_div view_next'>
                   {next_view.length > 0 ?<img src={next} title='next article' onClick={next_url ? () => this._changeViewPage(next_url) : () => this._changeViewPage('null_next') }/> : null}
+                  
                   <div>
                     {next_view.length > 0 ? <p><b>{next_view[0].title}</b></p> : <b><p>This article is the last in {category}</p></b>}
                   </div>
+
                 </div>
 
               </div>
-            </div>
-            : null}
+            </div>: null}
         </div>
     );
   }

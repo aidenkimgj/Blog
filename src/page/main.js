@@ -35,7 +35,7 @@ class main extends Component {
   }
 
   render() {
-    const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page, select_category, _selectCategoryData, _toggleModal, _changePage, _changeCategory, _changeEdit, category_data} = this.props;
+    const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page,  _toggleModal, _changePage, _changeCategory, _changeEdit} = this.props;
     const {_getContents, _getTtitles} = this;
     const {contents, title} = this.state;
 
@@ -74,6 +74,7 @@ class main extends Component {
 
           <Route path='/view/:data' 
                   component={this._withProps(View, {
+                    admin: admin,
                     login: login,
                     user_id: user_id,
                     _toggleModal: _toggleModal,
