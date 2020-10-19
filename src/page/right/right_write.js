@@ -12,7 +12,13 @@ class right_write extends Component {
     }
   }
   componentDidMount = () => {
+    const board_id = this.props.match.params.data;
+    
     this._getAllCategoryData();
+    
+    if(board_id && !this.state.select_category) {
+      this._selectCategoryData(board_id);
+    }
   }
 
   _getAllCategoryData = async () => {
@@ -21,9 +27,18 @@ class right_write extends Component {
     this.setState({category_data: getData.data});
   }
 
-  _selectCategoryData = () => {
-    const category = document.getElementsByName('select_category')[0].value;
+  _selectCategoryData = async board_id => {
+    let category = document.getElementsByName('select_category')[0].value;
 
+    if(board_id) {
+      const getData = await axios('/get/board_data', {
+        method: 'POST',
+        headers: new Headers(),
+        data: {id: board_id}
+      });
+      console.log(getData);
+      return this.setState({select_category: getData.data.data[0].cat_id});
+    }
     this.setState({select_category: category});
   }
 
@@ -57,7 +72,7 @@ class right_write extends Component {
 
   render() {
     const {category_data, select_category} = this.state;
-    console.log(category_data);
+    
     return(
       <div>
         <div className='select_category_div'>
@@ -72,7 +87,9 @@ class right_write extends Component {
         </div>
 
         <div id='post_submit'>
-          <button onClick={() => this._submitBoard()}>Post Registration</button>
+          <button onClick={() => this._submitBoard()}>
+            {!this.props.match.params.data ? 'Post' : 'Edit'}  
+          </button>
         </div>
       </div>
     );

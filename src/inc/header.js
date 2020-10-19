@@ -30,7 +30,7 @@ class header extends Component {
     return (
         <div className='header_grid'>
           <div className='acenter'> 
-            {login && admin === 'Y' && user_ip === ip ? <h5><Link to ='/write'>Post</Link></h5> : null}
+            {login && admin === 'Y' && user_ip === ip ? <h5><Link className='post' to ='/write'>Create Post</Link></h5> : null}
           </div>
           
           <div className='acenter'>

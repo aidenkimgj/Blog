@@ -7,6 +7,17 @@
 
 .acenter { 
   text-align: center; 
+  
+}
+
+.post {
+  text-decoration: none;
+  color: black;
+}
+
+.post:hover {
+  color: darkgoldenrod;
+  font-weight: bolder;
 }
 
 .btn_cursor {

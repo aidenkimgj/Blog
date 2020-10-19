@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './main.css';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 
 class view extends Component {
   constructor(props) {
@@ -146,7 +146,7 @@ class view extends Component {
     const category = sessionStorage.getItem('category_name');
     const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view} = this.state;
     const {admin} = this.props;
-    
+    console.log(data.data)
     let next_url = "";
     let pre_url = "";
 
@@ -158,13 +158,21 @@ class view extends Component {
       pre_url = `/view/${pre_view[0].board_id}`;
     }
 
+    let modify_url = ""; 
+
+    if(data.data) {
+      modify_url = `/write/modify/${data.data[0].board_id}`;
+    }
+
     return (
         <div className='Write'>
             {data.data ? 
             <div>
               {admin === 'Y' ? 
               <div className='write_option_div'>
-                <input type='button' value='Modify'/>
+                <Link to={modify_url}>
+                  <input type='button' value='Modify'/>
+                </Link>
                 <input type='button' id='del' value='Delete'/>
               </div> : null}
               

@@ -52,12 +52,18 @@
 }
 
 #post_submit button {
-  width: 120px;
+  width: 60px;
   padding: 5px;
   border-radius: 5px;
   border: solid 1px #ababab;
   cursor: pointer;
   background-color: white;
+  font-weight: bold;
+}
+
+#post_submit button:hover {
+  background-color: tan;
+  color: white;
 }
 
 .List {

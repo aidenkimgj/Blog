@@ -28,7 +28,7 @@ class main extends Component {
     this.setState({contents: _contents});
   }
 
-  _getTtitles = () => {
+  _getTitles = () => {
     const _title = document.getElementsByName('title')[0].value.trim();
 
     this.setState({title: _title});
@@ -36,7 +36,7 @@ class main extends Component {
 
   render() {
     const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page,  _toggleModal, _changePage, _changeCategory, _changeEdit} = this.props;
-    const {_getContents, _getTtitles} = this;
+    const {_getContents, _getTitles} = this;
     const {contents, title} = this.state;
 
     
@@ -66,11 +66,21 @@ class main extends Component {
                   list_page: list_page,
                   _changePage: _changePage})} exact /> 
           
-          <Route path='/write' component={this._withProps(Write, {
-                                _getTtitles: _getTtitles, 
+          <Switch>
+            <Route path='/write' component={this._withProps(Write, {
+                                _getTitles: _getTitles, 
                                 _getContents: _getContents, 
                                 title: title, 
                                 contents: contents})} />
+            <Route path='/write/modify/:data' 
+                    component={this._withProps(Write, { 
+                      _getContents : _getContents,
+                      _getTitles : _getTitles,
+                      contents : contents,
+                      title : title,
+                      // _getModifyData : _getModifyData
+                      })} />                    
+          </Switch> 
 
           <Route path='/view/:data' 
                   component={this._withProps(View, {
@@ -82,7 +92,9 @@ class main extends Component {
         </div>
 
         <div id='Mains-right'>  
-          <Route path='/write' component={this._withProps(Right_Write, {title: title, contents: contents})} />
+          <Route path='/write' component={this._withProps(Right_Write, {title: title, contents: contents})} exact/>
+          
+          <Route path='/write/modify/:data' component={this._withProps(Right_Write, {title: title, contents: contents})} />
         </div>
         
       </div>
