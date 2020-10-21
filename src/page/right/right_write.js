@@ -46,6 +46,7 @@ class right_write extends Component {
     const _title = this.props.title;
     const contents = this.props.contents;
     const category = this.state.select_category;
+    const board_id = this.props.match.params.data;
 
     if(_title === "") {
       return alert('Please enter a title.');
@@ -57,17 +58,40 @@ class right_write extends Component {
       return alert('Please choose the category.')
     }
 
-    const data = {title: _title, contents: contents, category: category};
-    const res = await axios('/add/board', {
-      method: 'POST',
-      data: data,
-      headers: new Headers()
-    });
+    if(!board_id) {
+      
+      const data = {title: _title, contents: contents, category: category};
+      const res = await axios('/add/board', {
+        method: 'POST',
+        data: data,
+        headers: new Headers()
+      });
 
-    if(res.data) {
-      alert('Your article posted.');
-      return window.location.replace('/');
+      if(res.data) {
+        alert('Your article posted.');
+        return window.location.replace('/');
+      }
+
+    } else {
+      
+      const data = {title: _title, constents: contents, category: category, board_id: board_id};
+
+      const res = await axios('/update/board', {
+        method: 'POST',
+        data: data,
+        headers: new Headers()
+      }); 
+
+      if(res.data) {
+        alert('Your article updated.');
+
+        const url = `/view/${board_id}`;
+
+        sessionStorage.setItem('category', category);
+        return window.location.href = url;
+      }
     }
+    
   }
 
   render() {

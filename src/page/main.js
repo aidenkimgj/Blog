@@ -4,7 +4,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import { Write, List, View } from './index';
 import { Right_Write } from './right';
 import { Category } from './left';
-
+import axios from 'axios';
 
 class main extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class main extends Component {
       category: "",
       contents: "",
       title: "",
+      board_id: "",
     }
   }
 
@@ -34,10 +35,22 @@ class main extends Component {
     this.setState({title: _title});
   }
 
+  _getModifyData = async board_id => {
+    const getData = await axios('/get/board_data', {
+      method: 'POST',
+      data: {id: board_id},
+      headers: new Headers()
+    });
+    console.log(getData)
+    this.setState({title: getData.data.data[0].title,
+                  contents: getData.data.data[0].contents,
+                  board_id: getData.data.data[0].board_id});
+  }
+
   render() {
     const {login, admin, user_ip, user_id, ip, edit,  list_data, list_all_page, list_search, list_page,  _toggleModal, _changePage, _changeCategory, _changeEdit} = this.props;
-    const {_getContents, _getTitles} = this;
-    const {contents, title} = this.state;
+    const {_getContents, _getTitles, _getModifyData} = this;
+    const {contents, title, board_id} = this.state;
 
     
 
@@ -66,21 +79,22 @@ class main extends Component {
                   list_page: list_page,
                   _changePage: _changePage})} exact /> 
           
-          <Switch>
+          
             <Route path='/write' component={this._withProps(Write, {
                                 _getTitles: _getTitles, 
                                 _getContents: _getContents, 
                                 title: title, 
-                                contents: contents})} />
+                                contents: contents})} exact/>
             <Route path='/write/modify/:data' 
                     component={this._withProps(Write, { 
                       _getContents : _getContents,
                       _getTitles : _getTitles,
                       contents : contents,
                       title : title,
-                      // _getModifyData : _getModifyData
+                      board_id: board_id,
+                      _getModifyData : _getModifyData
                       })} />                    
-          </Switch> 
+        
 
           <Route path='/view/:data' 
                   component={this._withProps(View, {

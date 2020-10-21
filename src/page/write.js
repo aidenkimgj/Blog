@@ -5,8 +5,16 @@ import './main.css'
 class write extends Component {
   constructor(props) {
     super(props)
+    
   }
-
+  
+  componentDidMount = () => {
+    const board_id = this.props.match.params.data;
+    
+    if(board_id != this.props.board_id) {
+      this.props._getModifyData(board_id);
+    }
+  }
   render() {
     const {_getTitles, title, _getContents, contents} = this.props;
 

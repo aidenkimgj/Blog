@@ -204,6 +204,14 @@ module.exports = {
         }
       });
     },
+
+    board: (req, res) => {
+      const body = req.body;
+
+      model.update.board(body, data => {
+        res.send(true);
+      })
+    }
   },
 
   delete: {
@@ -215,6 +223,14 @@ module.exports = {
           res.send(result);
         }
       });
+    },
+
+    board: (req, res) => {
+      const body = req.body;
+
+      model.delete.board(body, result => {
+        res.send(result);
+      })
     }
   },
 

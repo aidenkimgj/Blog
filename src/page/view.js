@@ -142,6 +142,21 @@ class view extends Component {
     return window.location.href = url;
   }
 
+  _removeView = async () => {
+    const board_id = this.props.match.params.data;
+
+    if(window.confirm('Would you like to delete this article?')) {
+      await axios('/delete/board', {
+        method: 'POST',
+        data: {board_id: board_id},
+        headers: {board_id: board_id}
+      });
+
+      alert('Your article has been deleted.');
+      return window.location.href = '/';
+    }
+  }
+
   render() {
     const category = sessionStorage.getItem('category_name');
     const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view} = this.state;
@@ -173,7 +188,7 @@ class view extends Component {
                 <Link to={modify_url}>
                   <input type='button' value='Modify'/>
                 </Link>
-                <input type='button' id='del' value='Delete'/>
+                <input type='button' id='del' onClick={() => this._removeView()} value='Delete'/>
               </div> : null}
               
               <div className='top_title'>
