@@ -1,7 +1,8 @@
 .Mains {
   display: grid;
   grid-template-columns: 19% 62% 19%;
-  height: 680px;
+  height: 930px;
+  
 }
 
 #Mains-left {
@@ -23,6 +24,7 @@
 }
 
 #title_txt {
+  
   width: 87%;
   padding-bottom: 10px;
   border: none;
@@ -482,7 +484,7 @@ input[name=change_password_submit] {
 #view_list_button {
   position: absolute;
   width: 40px;
-  margin: -40px 0px 0px 54%;
+  margin: -5% 5% 5% -0%;
   padding: 3px 7px 3px 7px;
   border-radius: 5px;
   border : solid 1px #ababab;
@@ -490,3 +492,35 @@ input[name=change_password_submit] {
   background-color: white;
 }
 
+.Reply_div {
+  border-top: solid 1px #ababab;
+  margin-top: 40px;
+}
+
+.Reply_div h4 {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.Reply_div .Reply_write {
+  height: 110px;
+  border-bottom: solid 1px #ababab;
+}
+
+.Reply_div .Reply_write textarea {
+  width: 75%;
+  padding: 10px;
+  resize: none;
+  font-size: 15px;
+  line-height: 146.9%;
+  margin-left: 30px;
+}
+
+#reply_submit_button {
+  position: absolute;
+  width: 7%;
+  height: 10.2%;
+  background-color: white;
+  border: solid 1px #ababab;
+  cursor: pointer;
+}

@@ -1,7 +1,17 @@
 .footer_grid {
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  border-top: solid 1px #ababab;
+  border-top: solid 3px #ababab;
+  height: 100px;
+  border-top-left-radius: 50px 20px;
+  border-top-right-radius: 50px 20px;
   background-color: #ababab;
-  height: 193px;
+}
+
+.footer_grid div:nth-child(2) {
+  margin-top: 3%;
+  font-size: 18px;
+  font-weight: bolder;
+  text-align: center;
+  color: rgb(39, 34, 21);
 }

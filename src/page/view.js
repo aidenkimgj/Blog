@@ -230,6 +230,15 @@ class view extends Component {
                 </div>
 
               </div>
+
+              <div className='Reply_div'>
+                <h4>Comment</h4>
+
+                <div className='Reply_write'>
+                  <textarea rows='2' placeholder='Write a comment...' maxLength='200' name='write_reply'></textarea>
+                  <input type='button' value='Comment' id='reply_submit_button'/>
+                </div>    
+              </div>
             </div>: null}
         </div>
     );
