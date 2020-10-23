@@ -189,9 +189,9 @@ class App extends Component {
                 _changeCategory={_changeCategory} />
         </div>
 
-        <div>
+        {/* <div>
           <Footer/>
-        </div>
+        </div> */}
       </div>
 
     )

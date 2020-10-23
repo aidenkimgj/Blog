@@ -157,10 +157,22 @@ class view extends Component {
     }
   }
 
+  _loginCheck = () => {
+    const {login, _toggleModal} = this.props;
+
+    if(!login) {
+      alert('Login needs to be done!');
+      _toggleModal(true);
+      return false;
+    }
+    return true;
+  }
+
   render() {
     const category = sessionStorage.getItem('category_name');
     const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view} = this.state;
     const {admin} = this.props;
+    const {_loginCheck} = this;
     console.log(data.data)
     let next_url = "";
     let pre_url = "";
@@ -235,8 +247,8 @@ class view extends Component {
                 <h4>Comment</h4>
 
                 <div className='Reply_write'>
-                  <textarea rows='2' placeholder='Write a comment...' maxLength='200' name='write_reply'></textarea>
-                  <input type='button' value='Comment' id='reply_submit_button'/>
+                  <textarea rows='2' placeholder='Write a comment...' onClick={() => _loginCheck()} maxLength='300' name='write_reply'></textarea>
+                  <input type='button' value='Comment' onClick={() => _loginCheck()} id='reply_submit_button'/>
                 </div>    
               </div>
             </div>: null}

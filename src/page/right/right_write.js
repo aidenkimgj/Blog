@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../main.css';
 import axios from 'axios';
 
-
 class right_write extends Component {
   constructor(props) {
     super(props);

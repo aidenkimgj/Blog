@@ -1,7 +1,7 @@
 .Mains {
   display: grid;
   grid-template-columns: 19% 62% 19%;
-  height: 930px;
+  height: 600px;
   
 }
 
@@ -519,7 +519,7 @@ input[name=change_password_submit] {
 #reply_submit_button {
   position: absolute;
   width: 7%;
-  height: 10.2%;
+  height: 64.7px;
   background-color: white;
   border: solid 1px #ababab;
   cursor: pointer;

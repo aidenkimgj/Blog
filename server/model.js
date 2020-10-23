@@ -9,6 +9,7 @@ const {
   Category,
   User,
   Like,
+  Reply,
   Sequelize:{Op}
 } = require('./models');
 sequelize.query('SET NAMES utf8;');
