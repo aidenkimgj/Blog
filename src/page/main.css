@@ -518,9 +518,45 @@ input[name=change_password_submit] {
 
 #reply_submit_button {
   position: absolute;
+  font-weight: bold;
   width: 7%;
   height: 64.7px;
   background-color: white;
   border: solid 1px #ababab;
   cursor: pointer;
+}
+
+#reply_submit_button:hover {
+  color: white;
+  background-color: rgb(223, 193, 23);
+}
+
+.Reply_list .reply_list_div .reply_list_grid {
+  display: grid;
+  grid-template-columns: 20% 55% 25%;
+  padding: 15px;
+  border-bottom: solid 1px #ababab;
+}
+
+.reply_list_id {
+  font-weight: bold;
+  border-right: solid 1px #ababab;
+}
+
+.reply_list_contents {
+  margin-left: 10px;
+}
+
+.reply_list_date {
+  text-align: right;
+  font-size: 12px;
+  color: #ababab;
+}
+
+.reply_delete_btn {
+  margin-left: 8%;
+  cursor: pointer;
+  background-color: white;
+  border: solid 1px #ababab;
+  border-radius: 5px;
 }

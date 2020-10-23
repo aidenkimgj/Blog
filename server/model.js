@@ -94,6 +94,21 @@ module.exports = {
       .catch(err => {
         throw err;
       });
+    },
+
+    reply: (body, now_date, callback) => {
+      Reply.create({
+        contents: body.contents,
+        date: now_date,
+        board_id: body.board_id,
+        user_id: body.user_id
+      })
+      .then(() => {
+        callback(true);
+      })
+      .catch(() => {
+        callback(false);
+      });
     }
   },
   
@@ -270,6 +285,21 @@ module.exports = {
       throw err;
     })
 
+    },
+
+    reply_data: (body, callback) => {
+      Reply.findAndCountAll({
+        include: [{
+          model: User,
+        }],
+        where: {board_id: body.board_id}
+      })
+      .then(result => {
+        callback(result);
+      })
+      .catch(err => {
+        throw err;
+      })
     }
   },
 

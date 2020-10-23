@@ -102,6 +102,14 @@ module.exports = {
         
         res.send(result);
       })
+    },
+
+    reply: (req, res) => {
+      const body = req.body;
+
+      model.add.reply(body, now_date, result => {
+        res.send(result);
+      })
     }
   },
 
@@ -147,6 +155,14 @@ module.exports = {
       model.get.pre_and_next(body, data => {
         res.send(data);
       });
+    },
+
+    reply_data: (req, res) => {
+      const body = req.body;
+
+      model.get.reply_data(body, data => {
+        res.send(data);
+      })
     }
   },
 

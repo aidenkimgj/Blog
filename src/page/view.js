@@ -17,6 +17,8 @@ class view extends Component {
       next: 'https://image.flaticon.com/icons/png/512/122/122636.png',
       pre_view: [],
       next_view: [],
+      reply_data: [],
+      reply_num: null
     }
   }
   
@@ -24,13 +26,21 @@ class view extends Component {
     
     const board_id = this.props.match.params.data;
     const {pre_view, next_view} = this.state;
-    
-      this._getLikeInfo();
-      if(pre_view.length === 0 || next_view.length === 0) {
+      if(!this.state.like_exist) {
+        this._getLikeInfo();
+      }
+      
+      if(pre_view.length === 0 && next_view.length === 0) {
         
         this._getPreAndNextData(board_id);
       }
-      this._getData(board_id);
+      if(this.state.data.length === 0) {
+        this._getData(board_id);
+      }
+      
+      if(this.state.reply_num === null) {
+        this._getReplyData(board_id);
+      }
         
       this._addViewCnt(board_id);
       
@@ -48,7 +58,6 @@ class view extends Component {
     console.log(res)
     this.setState({pre_view: res.data.pre, next_view: res.data.next});
   }
-
 
   _getData = async board_id => {
     
@@ -168,12 +177,67 @@ class view extends Component {
     return true;
   }
 
+  _addReply = async () => {
+    let reply = document.getElementsByName('write_reply')[0].value.trim();
+
+    reply = reply.replace(/(\n|\r\n)/g, '<br>');
+
+    const board_id = this.props.match.params.data;
+    const {user_id} = this.props;
+
+    if(!this._loginCheck()) {
+      return;
+    }
+
+    if(reply === "" || reply.length === 0) {
+      document.getElementsByName('write_reply')[0].focus();
+      document.getElementsByName('write_reply')[0].value = reply;
+      return alert('Please write reply!');
+    
+    }else if(reply.split('<br>').length > 6) {
+      return alert('More than six lines of your comment are exceeded!');
+    } 
+
+    const data = {
+      board_id: board_id,
+      contents: reply,
+      user_id: user_id
+    }
+
+    const res = await axios('/add/reply', {
+      method: 'POST',
+      data: data,
+      headers: new Headers()
+    });
+    if(res) {
+      alert('Your comment has been posted.');
+      return window.location.reload();
+    } else {
+      alert('Sorry, Your comment has not been posted!')
+    }
+    
+  }
+
+  _getReplyData = async board_id => {
+
+    const getData = await axios('/get/reply_data', {
+      method: 'POST',
+      data: {board_id: board_id},
+      headers: new Headers()
+    });
+
+    this.setState({
+      reply_data: getData.data.rows,
+      reply_num: getData.data.count
+    });
+  }
+
   render() {
     const category = sessionStorage.getItem('category_name');
-    const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view} = this.state;
-    const {admin} = this.props;
-    const {_loginCheck} = this;
-    console.log(data.data)
+    const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view, reply_data, reply_num} = this.state;
+    const {admin, login} = this.props;
+    const {_loginCheck, _addReply} = this;
+    console.log(reply_data)
     let next_url = "";
     let pre_url = "";
 
@@ -247,9 +311,44 @@ class view extends Component {
                 <h4>Comment</h4>
 
                 <div className='Reply_write'>
-                  <textarea rows='2' placeholder='Write a comment...' onClick={() => _loginCheck()} maxLength='300' name='write_reply'></textarea>
-                  <input type='button' value='Comment' onClick={() => _loginCheck()} id='reply_submit_button'/>
-                </div>    
+                  <textarea rows='2' placeholder='Write a comment...' onClick={() => _loginCheck()} maxLength='500' name='write_reply'></textarea>
+                  <input type='button' value='Comment' onClick={() => _addReply()} id='reply_submit_button'/>
+                </div>
+
+                <div className='Reply_list'>
+                  
+                  <div>
+                    {reply_num > 1 ? <h5>{reply_num} Comments</h5> : <h5>{reply_num} Comment</h5>}
+                    <div className='reply_list_div'>
+                      {reply_data.map(el => {
+
+                        let id = el.user.id;
+                        
+                        if(el.user.admin === 'Y') {
+                          id = 'Administrator';
+                        }
+
+                        let date = `${el.date.slice(2, 10)} ${el.date.slice(11, 16)}`;
+
+                        return(
+                          
+                          <div className='reply_list_grid'>
+                            <div className={el.user.admin === 'Y' ? 'reply_list_id': null}>{id}</div>
+                            
+                            <div className='reply_list_contents' dangerouslySetInnerHTML={{__html: el.contents}}></div>
+                            
+                            <div className='reply_list_date'>
+                              {date}
+                              {(login && login === el.user.id) || admin === 'Y' ? 
+                              <input type='button' value='Delete' className='reply_delete_btn'/> : null}
+                            </div>
+                          </div>  
+                        );
+                      })}
+                    </div>  
+                  </div> 
+                  
+                </div>      
               </div>
             </div>: null}
         </div>
