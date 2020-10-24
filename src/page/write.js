@@ -10,7 +10,8 @@ class write extends Component {
   
   componentDidMount = () => {
     const board_id = this.props.match.params.data;
-    
+   
+
     if(board_id != this.props.board_id) {
       this.props._getModifyData(board_id);
     }

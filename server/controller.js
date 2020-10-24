@@ -246,7 +246,15 @@ module.exports = {
 
       model.delete.board(body, result => {
         res.send(result);
-      })
+      });
+    },
+
+    reply: (req, res) => {
+      const body = req.body;
+
+      model.delete.reply(body, result => {
+        res.send(result);
+      });
     }
   },
 

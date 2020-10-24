@@ -84,7 +84,7 @@ class main extends Component {
                                 _getTitles: _getTitles, 
                                 _getContents: _getContents, 
                                 title: title, 
-                                contents: contents})} exact/>
+                                contents: contents})}/>
             <Route path='/write/modify/:data' 
                     component={this._withProps(Write, { 
                       _getContents : _getContents,
@@ -93,7 +93,7 @@ class main extends Component {
                       title : title,
                       board_id: board_id,
                       _getModifyData : _getModifyData
-                      })} />                    
+                      })} exact/>                    
         
 
           <Route path='/view/:data' 

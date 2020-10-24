@@ -227,7 +227,7 @@ module.exports = {
       })
       .catch(err => {
         throw err;
-      })
+      });
     },
 
     pre_and_next: (body, callback) => {
@@ -283,7 +283,7 @@ module.exports = {
     })
     .catch(err => {
       throw err;
-    })
+    });
 
     },
 
@@ -299,7 +299,7 @@ module.exports = {
       })
       .catch(err => {
         throw err;
-      })
+      });
     }
   },
 
@@ -346,7 +346,7 @@ module.exports = {
           })
           .catch(err => {
             throw err;
-          })
+          });
         })
         .catch(err => {
           throw err;
@@ -367,11 +367,11 @@ module.exports = {
           })
           .catch(err => {
             throw err;
-          })
+          });
         })
         .catch(err => {
           throw err;
-        })
+        });
       }
     },
 
@@ -388,7 +388,7 @@ module.exports = {
       })
       .catch(err => {
         throw err;
-      })
+      });
     }
   },
 
@@ -403,7 +403,7 @@ module.exports = {
         })
         .then(() => {callback(true)})
         .catch(err => {throw err;});
-      })
+      });
     },
 
     board: (body, callback) => {
@@ -415,7 +415,19 @@ module.exports = {
       })
       .catch(err => {
         throw err;
+      });
+    },
+
+    reply: (body, callback) => {
+      Reply.destroy({
+        where: {reply_id: body.reply_id}
       })
+      .then(() => {
+        callback(true);
+      })
+      .catch(err => {
+        throw err;
+      });
     }
   },
 

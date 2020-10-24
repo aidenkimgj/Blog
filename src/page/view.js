@@ -232,11 +232,27 @@ class view extends Component {
     });
   }
 
+  _removeReply = async reply_id => {
+    if(window.confirm('Would you like to delete your comment?')) {
+      const res = await axios('/delete/reply', {
+        method: 'POST',
+        data: {reply_id: reply_id},
+        headers: new Headers()
+      });
+
+      if(res) {
+        alert('Your comment has been deleted!');
+        return window.location.reload();
+      }
+    }
+    
+  }
+
   render() {
     const category = sessionStorage.getItem('category_name');
     const {data, date, none_like, like, like_exist, like_num, pre, next, pre_view, next_view, reply_data, reply_num} = this.state;
     const {admin, login} = this.props;
-    const {_loginCheck, _addReply} = this;
+    const {_loginCheck, _addReply, _removeReply} = this;
     console.log(reply_data)
     let next_url = "";
     let pre_url = "";
@@ -323,7 +339,7 @@ class view extends Component {
                       {reply_data.map(el => {
 
                         let id = el.user.id;
-                        
+                        console.log(id);
                         if(el.user.admin === 'Y') {
                           id = 'Administrator';
                         }
@@ -340,7 +356,7 @@ class view extends Component {
                             <div className='reply_list_date'>
                               {date}
                               {(login && login === el.user.id) || admin === 'Y' ? 
-                              <input type='button' value='Delete' className='reply_delete_btn'/> : null}
+                              <input type='button' value='Delete' className='reply_delete_btn' onClick={() => _removeReply(el.reply_id)}/> : null}
                             </div>
                           </div>  
                         );

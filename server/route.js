@@ -20,6 +20,7 @@ router.post('/update/password', controller.update.password);
 router.post('/update/like', controller.update.like);
 router.post('/delete/category', controller.delete.category);
 router.post('/delete/board', controller.delete.board);
+router.post('/delete/reply', controller.delete.reply);
 router.post('/modify/category', controller.modify.category);
 router.post('/search/id', controller.search.id);
 router.post('/search/pw', controller.search.pw);
