@@ -51,11 +51,11 @@
     "sha256": "^0.2.0"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "server": "nodemon server/server.js",
-    "dev": "concurrently \"nodemon server/server.js\" \"craco start\"",
-    "test": "craco test",
+    "dev": "concurrently \"nodemon server/server.js\" \"react-scripts start\"",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
