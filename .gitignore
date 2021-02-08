@@ -27,3 +27,6 @@ yarn-error.log*
 
 # ip
 /server/config/personal.js
+
+# history
+.history/*

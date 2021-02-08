@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-pascal-case */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
 import Modal from 'react-awesome-modal';
 import axios from 'axios';
@@ -93,6 +95,7 @@ class login extends Component {
             <div>
               <h4 className='acenter login_tit'>Login</h4>
               <img src={close} id='login_close' onClick={() => this.props._toggleModal(false)}/>
+              
               <form>
                 <div className='login_div'>
                   <div className = 'login_input_div'>
