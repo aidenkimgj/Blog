@@ -14,7 +14,7 @@ This project is a personal blog. The owner of the blog can create, delete, and e
 - CKEditor5
 - Express JS
 - MySQL
-- Squlize
+- Sequelize
 - CSS
 - Git
 - GitHub
